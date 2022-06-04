@@ -6,6 +6,7 @@ from django.utils.datastructures import MultiValueDictKeyError
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib import messages
+from student.models import studata
 
 User = get_user_model()
 
@@ -20,20 +21,17 @@ def studenthome(request):
 def application(request):
     if request.method=="POST":
         name:str =  request.POST['name'],
-        dob      =  request.POST['dob'],
+        dob: str      =  request.POST['dob'],
         mail :str    =  request.POST['mail'],
         contact  =  request.POST['contact'],
         password:str =  request.POST['password'],
         cnfpass  =  request.POST['cnfpass']
-
-
 
         global x
         x=x+1
         print(x)
         cno="052"
         appno="2022"+cno+str(x)
-        
         
         msg=None
         password=str(password)
@@ -44,9 +42,28 @@ def application(request):
         myuser.contact=contact
         myuser.is_student=True
         myuser.application_no=appno
-        
-
         myuser.save()
+
+        center:str=(str)('to be assigned')
+        sdata=studata()
+        sdata.appno=appno
+        sdata.firstname=name
+        sdata.lastname=name
+        # sdata.dob=dob
+        sdata.email=mail
+        sdata.contact=contact
+        sdata.center=center
+        sdata.save()
+
+        # studata1=studata()
+        # studata1.appno = appno
+        # studata1.firstname = name
+        # studata1.lastname = name
+        # studata1.email = mail
+        # studata1.contact = contact
+        # studata1.center = "TO BE ASSIGNED"
+        # studata1.save()
+
 
         messages.success(request, "applied")
 
