@@ -6,3 +6,4 @@ from django.http import HttpResponse
 
 def landing(request):
     return render(request,"LANDING PAGE\index.html")
+
