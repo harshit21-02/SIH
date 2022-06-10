@@ -17,10 +17,9 @@ from django.contrib import admin
 from django.urls import path, include
 from . import views
 
+app_name="inhome"
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.landing, name="landing"),
-    path('student/',include('student.urls', namespace='studenthome')),
-    path('invigilator/',include('invigilator.urls', namespace='inhome')),
-    path('qrgenerator/',include('qrgenerator.urls', namespace='qrgenerator')),
+    path('', views.inhome, name="inhome"),
 ]
