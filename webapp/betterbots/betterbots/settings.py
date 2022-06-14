@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'student',
     'authenticate',
+    'invigilator',
+    'qrgenerator'
 ]
 
 MIDDLEWARE = [
