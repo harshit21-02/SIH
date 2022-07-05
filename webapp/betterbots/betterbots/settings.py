@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 from django.db.backends.mysql.base import DatabaseWrapper
 DatabaseWrapper.data_types['DateTimeField'] = 'datetime' # fix for MySQL 5.5
 
+
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,7 +135,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 STATICFILES_DIRS =[
-    BASE_DIR,"static"
+    BASE_DIR/ "static" ,
 ]
 
 AUTH_USER_MODEL = 'authenticate.User'

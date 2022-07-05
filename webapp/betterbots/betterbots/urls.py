@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls.static import static
 from . import views
-
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.landing, name="landing"),
     path('student/',include('student.urls', namespace='studenthome')),
     path('invigilator/',include('invigilator.urls', namespace='inhome')),
     path('qrgenerator/',include('qrgenerator.urls', namespace='qrgenerator')),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

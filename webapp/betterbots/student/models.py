@@ -10,7 +10,7 @@ class studata(models.Model):
     appno=models.TextField(max_length=30,default='')
     firstname=models.TextField(max_length=30,default='')
     lastname=models.TextField(max_length=30,default='')
-    dob=models.DateField('dob',default='2001-1-1')
+    dob=models.DateField(default='2001-1-1')
     email=models.EmailField(max_length=30,default='')
     contact=models.TextField(default='')
     center=models.TextField(max_length=30,default='')

@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from re import X
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -20,13 +21,15 @@ def studenthome(request):
 
 def application(request):
     if request.method=="POST":
-        name:str =  request.POST['name'],
-        dob: str      =  request.POST['dob'],
-        mail :str    =  request.POST['mail'],
-        contact  =  request.POST['contact'],
-        password:str =  request.POST['password'],
-        cnfpass  =  request.POST['cnfpass']
+        name:str =  request.POST['name']
+        dob: str =  request.POST['dob']
+        mail :str =  request.POST['mail']
+        contact =  request.POST['contact']
+        password:str =  str(request.POST['password'])
+        cnfpass: str = str(request.POST['cnfpass'])
 
+        print(cnfpass)
+        print(password)
         global x
         x=x+1
         print(x)
@@ -36,9 +39,13 @@ def application(request):
         msg=None
         password=str(password)
 
+        if password !=cnfpass:
+            return redirect('/../student/application/')
+
         myuser = User.objects.create_user(username=name, password = password)
         myuser.first_name = name
         myuser.mail=mail
+        myuser.dob=dob
         myuser.contact=contact
         myuser.is_student=True
         myuser.application_no=appno
@@ -49,25 +56,15 @@ def application(request):
         sdata.appno=appno
         sdata.firstname=name
         sdata.lastname=name
-        # sdata.dob=dob
+        sdata.dob=dob
         sdata.email=mail
         sdata.contact=contact
         sdata.center=center
         sdata.save()
 
-        # studata1=studata()
-        # studata1.appno = appno
-        # studata1.firstname = name
-        # studata1.lastname = name
-        # studata1.email = mail
-        # studata1.contact = contact
-        # studata1.center = "TO BE ASSIGNED"
-        # studata1.save()
-
-
         messages.success(request, "applied")
 
-        return redirect('/student/iform')
+        return redirect('/../student/iform/')
 
     return render(request, "STUDENTS PAGE\pply.html")
 
@@ -83,9 +80,9 @@ def result(request):
         user = authenticate(username=appn, password=password)
         if user is not None:
             login(request, user)
-            msg='logged in'
-            print(msg)
-            return redirect('/student/iform')
+            data1=dict()
+            data1['username']=user.get_username
+            return redirect('/../student/iform/')
         else:
             msg = 'invlaid credentials'
             print(msg)
@@ -93,4 +90,5 @@ def result(request):
     return render(request, "STUDENTS PAGE\index.html")
 
 def iform(request):
+    # print(data['username'])
     return render(request, "STUDENTS PAGE\iform.html")
