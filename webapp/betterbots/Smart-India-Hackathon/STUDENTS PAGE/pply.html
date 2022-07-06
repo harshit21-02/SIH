@@ -9,21 +9,40 @@
 </head>
 <body>
   <div class="container">
-    <form action="#" method="POST"> {% csrf_token %}
+    <form action="#" method="POST" enctype="multipart/form-data"> {% csrf_token %}
       <div class="row">
         <div class="col-25">
-          <label for="name">NAME</label>
+          <label for="username">USERNAME</label>
         </div>
         <div class="col-75">
-          <input type="text" id="name" name="name" placeholder="ENTER YOUR NAME">
+          <input type="text" id="name" name="username" placeholder="ENTER YOUR USERNAME">
         </div>
       </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="fname">FIRST NAME</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="name" name="fname" placeholder="ENTER YOUR FIRST NAME">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-25">
+          <label for="lname">LAST NAME</label>
+        </div>
+        <div class="col-75">
+          <input type="text" id="name" name="lname" placeholder="ENTER YOUR LAST NAME">
+        </div>
+        </div>
+      </div>
+      
       
       <div class="row">
         <div class="col-25">
           <label for="dob">DATE OF BIRTH</label>
         </div>
-        <div class="col-75">
+
+        <div class="col-25">
           <input type="date" data-date="" data-date-format="YYYY/MM/DD" id="application_number" name="dob" placeholder="ENTER YOUR DATE OF BIRTH">
         </div>
       </div>
@@ -71,6 +90,12 @@
         <div class="col-75">
           <input type="password" id="password" name="cnfpass" placeholder="CONFIRM YOUR PASSWORD">
         </div>
+
+        <form action="/action_page.php">
+          <label for="image"> IMAGE </label>
+          <input type="file" id="myFile" Required name="image">
+          <input type="submit" value="VERIFY AND SUBMIT">
+        </form>
       </div>
 
       <div class="row">

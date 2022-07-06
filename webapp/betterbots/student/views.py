@@ -21,13 +21,17 @@ def studenthome(request):
 
 def application(request):
     if request.method=="POST":
-        name:str =  request.POST['name']
+        username:str =  request.POST['username']
+        fname:str = request.POST['fname']
+        lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
-        mail :str =  request.POST['mail']
-        contact =  request.POST['contact']
+        mail :str = request.POST['mail']
+        contact  =  request.POST['contact']
         password:str =  str(request.POST['password'])
         cnfpass: str = str(request.POST['cnfpass'])
+        
 
+        
         print(cnfpass)
         print(password)
         global x
@@ -42,24 +46,29 @@ def application(request):
         if password !=cnfpass:
             return redirect('/../student/application/')
 
-        myuser = User.objects.create_user(username=name, password = password)
-        myuser.first_name = name
-        myuser.mail=mail
+        myuser = User.objects.create_user(username=username, password = password)
+        myuser.first_name=fname
+        myuser.last_name=lname
+        myuser.email=mail
         myuser.dob=dob
         myuser.contact=contact
         myuser.is_student=True
         myuser.application_no=appno
+        
         myuser.save()
 
         center:str=(str)('to be assigned')
+        
         sdata=studata()
         sdata.appno=appno
-        sdata.firstname=name
-        sdata.lastname=name
+        sdata.firstname=fname
+        sdata.lastname=lname
         sdata.dob=dob
         sdata.email=mail
         sdata.contact=contact
         sdata.center=center
+        if len(request.FILES)!=0:
+            sdata.image=request.FILES['image']
         sdata.save()
 
         messages.success(request, "applied")

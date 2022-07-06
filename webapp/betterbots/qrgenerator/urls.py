@@ -25,5 +25,6 @@ app_name="qrgenerator"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.qr, name="qr"),
-    path('send/', views.qr),
+    path('send', views.qr),
+    path('video_reader', views.video_reader,name="video_reader")
 ] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
