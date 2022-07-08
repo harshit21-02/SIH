@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from re import X
+from xml.dom import ValidationErr
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from pytz import country_timezones
@@ -8,6 +9,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth import get_user_model
 from django.contrib import messages
 from student.models import studata
+from django import forms
 
 User = get_user_model()
 
@@ -30,21 +32,21 @@ def application(request):
         password:str =  str(request.POST['password'])
         cnfpass: str = str(request.POST['cnfpass'])
         
-
-        
-        print(cnfpass)
-        print(password)
         global x
         x=x+1
-        print(x)
         cno="052"
         appno="2022"+cno+str(x)
         
         msg=None
         password=str(password)
 
-        if password !=cnfpass:
-            return redirect('/../student/application/')
+
+        # if password !=cnfpass:
+        #     try:
+        #     except ValidationError:
+
+
+            # return redirect('/../student/application/')
 
         myuser = User.objects.create_user(username=username, password = password)
         myuser.first_name=fname
