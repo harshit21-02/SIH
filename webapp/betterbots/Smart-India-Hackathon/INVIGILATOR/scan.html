@@ -6,9 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scan_Page</title>
 </head>
+
 <body>
-    <div class="scan">
-        <input type="submit" value="SCAN">
-    </div>
+    <form action="video_reader" method="POST">
+        {% csrf_token %}
+        <input type="submit"  value="SCAN   QR   CODE">
+    </form>
 </body>
+
 </html>

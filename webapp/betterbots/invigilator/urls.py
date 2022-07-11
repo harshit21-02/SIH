@@ -23,4 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inhome, name="inhome"),
     path('scan', views.scan, name="scan"),
+    path('video_reader', views.video_reader,name="video_reader"),
+    path('details', views.details, name="details"),
 ]
