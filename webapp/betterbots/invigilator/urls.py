@@ -22,4 +22,5 @@ app_name="inhome"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.inhome, name="inhome"),
+    path('scan', views.scan, name="scan"),
 ]

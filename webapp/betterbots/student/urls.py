@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.contrib.auth import views as auth_view
+
 from . import views
+
 app_name="studenthome"
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.studenthome, name="studenthome"),
-    path('application/',views.application, name="application"),
-    path('result/',views.result,name="result"),
-    path('iform/',views.iform,name="iform")
+    path('application',views.application, name="application"),
+    path('result',views.result,name="result"),
+    path('profile',views.profile,name="profile")
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

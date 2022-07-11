@@ -10,7 +10,8 @@
 </head>
 <body>
     <div class="Login_page">
-        <form action="">
+        <form action="#" method="POST"> {% csrf_token %}
+            
             <div class="center_id">
                 <label for="Center_Id">Center ID</label>
                 <input type="text" id="Center_ID" name="Center_ID" placeholder="Center_Id"><br>
@@ -21,12 +22,10 @@
                 <input type="password" id="password" name="password" placeholder="password"><br>
             </div>
             
-            <a href="./scan.html" target="_blank">
-                <div class="Submit">
-                    <input type="button" value="Login">
-                </div>
-            </a>
-            
+            <div class="Submit">
+                <input type="submit" value="Login">
+            </div>
+
         </form>
         
     </div>

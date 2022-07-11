@@ -10,6 +10,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from student.models import studata
 from django import forms
+from django.contrib.auth.decorators import login_required
 
 User = get_user_model()
 
@@ -75,31 +76,29 @@ def application(request):
 
         messages.success(request, "applied")
 
-        return redirect('/../student/iform/')
+        return redirect('/../student/profile')
 
     return render(request, "STUDENTS PAGE\pply.html")
 
 def result(request):
     msg = None
     if request.method=="POST":
-        username: str =  request.POST['username'],
-        password =  request.POST['password'],
-        password=str(password) 
-
-        appn:str=username
-        user =None
-        user = authenticate(username=appn, password=password)
+        username =  request.POST['username']
+        password =  request.POST['password']
+        # password=str(password) 
+        # username=str(username)
+        user = authenticate(request,username=username, password=password)
         if user is not None:
             login(request, user)
             data1=dict()
+            print(username)
             data1['username']=user.get_username
-            return redirect('/../student/iform/')
+            return redirect('/../student/profile')
         else:
             msg = 'invlaid credentials'
-            print(msg)
+            print(username)
             return redirect('/')  
     return render(request, "STUDENTS PAGE\index.html")
 
-def iform(request):
-    # print(data['username'])
+def profile(request):
     return render(request, "STUDENTS PAGE\iform.html")
