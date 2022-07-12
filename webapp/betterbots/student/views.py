@@ -100,5 +100,13 @@ def result(request):
             return redirect('/')  
     return render(request, "STUDENTS PAGE\index.html")
 
+
 def profile(request):
     return render(request, "STUDENTS PAGE\iform.html")
+
+# dict = {'Name':[],'Contact':[]}
+# dict['name'].append()
+
+# def create_df(request):
+    
+
