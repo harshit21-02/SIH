@@ -91,15 +91,22 @@ def result(request):
         if user is not None:
             login(request, user)
             data1=dict()
-            print(username)
+            print('LOGGED IN')
             data1['username']=user.get_username
             return redirect('/../student/profile')
         else:
-            msg = 'invlaid credentials'
+            msg = 'invalid credentials'
             print(username)
-            return redirect('/')  
-    return render(request, "STUDENTS PAGE\index.html")
+            return redirect('/')
+            
+    return HttpResponse('404-NOT FOUND')
 
+def ogout(request):
+    if request.method=='POST':
+        logout(request)
+        messages.success(request, "successfully logged out")
+        return redirect('/')
+    return HttpResponse('alksfjskldjf')
 
 def profile(request):
     return render(request, "STUDENTS PAGE\iform.html")
