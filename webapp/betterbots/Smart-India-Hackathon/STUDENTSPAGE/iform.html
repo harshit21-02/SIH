@@ -1,0 +1,28 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APPLICATION FORM</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    
+
+    <h1> SAVE YOUR APLICATION FORM </h1>
+    <br>
+    <br>
+
+    <div> APPLICATION NO: </div>
+    <div> NAME: </div>
+    <div> DOB: </div>
+    <div> CONTACT: </div>
+    <div> E-MAIL: </div>
+    <div> CENTER ALLOTED: </div>
+    <form action = 'ogout' method = 'POST'> {% csrf_token %}
+      <input type = 'submit' name = 'logout' value='logout'>
+  
+    </form>
+
+</body>
+</html>

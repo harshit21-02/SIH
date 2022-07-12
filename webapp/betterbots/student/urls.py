@@ -27,5 +27,6 @@ urlpatterns = [
     path('', views.studenthome, name="studenthome"),
     path('application',views.application, name="application"),
     path('result',views.result,name="result"),
-    path('profile',views.profile,name="profile")
+    path('profile',views.profile,name="profile"),
+    path('ogout',views.ogout,name ="ogout")
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
