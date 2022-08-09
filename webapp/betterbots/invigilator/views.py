@@ -34,9 +34,18 @@ def inhome(request):
             return redirect('/')  
     return render(request, "INVIGILATOR\index.html")
 
+
+
+
 def scan(request):
     # print(data['username'])
     return render(request, "INVIGILATOR\scan.html")
+
+def logo(request):
+    logout(request)
+    return redirect('/../invigilator/')
+
+
 
 def video_reader(request):
     # print("HELLO WORLD")

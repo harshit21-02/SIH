@@ -12,6 +12,14 @@
         {% csrf_token %}
         <input type="submit"  value="SCAN   QR   CODE">
     </form>
+
+    <br>
+    <br>
+    
+    <form action="logo" method="POST">
+        {% csrf_token %}
+        <input type="submit"  value="LOGOUT">
+    </form>
 </body>
 
 </html>
