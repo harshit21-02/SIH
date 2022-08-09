@@ -72,4 +72,4 @@ def details(data):
     print(data)
     return HttpResponse(data)    
 
-    # comment
+    
