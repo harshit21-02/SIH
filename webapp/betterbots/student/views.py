@@ -92,14 +92,14 @@ def result(request):
             login(request, user)
             data1=dict()
             print('LOGGED IN')
-            data1['username']=user.get_username
+            # data1['username']=user.get_username
             return redirect('/../student/profile')
         else:
             msg = 'invalid credentials'
             print(username)
-            return redirect('/')
+            return redirect('/') 
             
-    return HttpResponse('404-NOT FOUND')
+    return render(request, "STUDENTS PAGE\index.html")
 
 def ogout(request):
     if request.method=='POST':

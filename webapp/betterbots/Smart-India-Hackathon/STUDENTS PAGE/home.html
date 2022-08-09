@@ -1,25 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BETTER BOTS</title>
-    <link rel="stylesheet" href="../../static/LANDING PAGE/style.css">
+    <link rel="stylesheet" href="../static/STUDENTS PAGE/home.css">
 </head>
 <body>
-    <div class="container">
-      
-        <!-- APPLY HERE -->
-        <div class="invigilator">
-            <a href="{% url 'studenthome:application' %}" class="invigilator_link" target="_blank"><button class="invigilator_category" style="vertical-align:middle"><span>APPLY HERE</span></button></a>
-        </div>
+    <div id="rectangle"></div>
+    <div id="rectangle"></div>
+
+<div class="buttons-coll">
+    <a href="{% url 'studenthome:application' %}">
+    <button class="custom-btn btn-11">APPLY HERE</button>
+    </a> 
+
     
-        <!-- CHECK RESULTS -->
-        <div class="evaluator">
-            <a href="{% url 'studenthome:result' %}" class="evaluator_link" target="_blank"><button class="evaluator_category" style="vertical-align:middle"><span>CHECK RESULTS</span></button></a>
-        </div>
-    </div>
-    
+    <a href="{% url 'studenthome:result' %}">
+    <button class="custom-btn btn-11">CHECK RESULTS</button>
+    </a>
+</div>
 </body>
-</html>
