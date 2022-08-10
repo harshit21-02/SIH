@@ -122,7 +122,7 @@ def profile(request):
         print(request.user.image);
         return render(request, "STUDENTS PAGE\iform.html")
     else:
-        return HttpResponse("Login First")
+        return HttpResponse("<br><br><center><H1>Login First</h1></center>")
 
 
 # dict = {'Name':[],'Contact':[]}
