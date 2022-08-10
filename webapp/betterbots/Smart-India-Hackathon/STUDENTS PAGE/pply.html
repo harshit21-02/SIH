@@ -9,8 +9,16 @@
 </head>
 <body>
   
+  <div></div>
+  {% for message in messages%}
+
+  <p style="color: red;">{{message}}</p>
+
+  {% endfor %}
+
   <div class="container">
     <form action="#" method="POST" enctype="multipart/form-data">
+      {%csrf_token%}
       <div class="row">
         <div class="col-25">
           <label for="username">USERNAME</label>

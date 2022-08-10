@@ -28,5 +28,5 @@ urlpatterns = [
     path('application',views.application, name="application"),
     path('result',views.result,name="result"),
     path('profile',views.profile,name="profile"),
-    path('ogout',views.ogout,name ="ogout")
+    path('logout1',views.logout1,name ="logout1")
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

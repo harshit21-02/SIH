@@ -1,5 +1,6 @@
 from dataclasses import dataclass
 from re import X
+import re
 from xml.dom import ValidationErr
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -24,7 +25,7 @@ def studenthome(request):
 
 def application(request):
     if request.method=="POST":
-        username:str =  request.POST['username']
+        username =  request.POST['username']
         fname:str = request.POST['fname']
         lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
@@ -33,6 +34,16 @@ def application(request):
         password:str =  str(request.POST['password'])
         cnfpass: str = str(request.POST['cnfpass'])
         
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, ' Sorry! Username is already taken')
+            return redirect('/application/')
+        elif User.objects.filter(email=mail).exists():
+            messages.error(request, ' Sorry! Email is already registered')
+            return redirect('/application/')
+
+
+
         global x
         x=x+1
         cno="052"
@@ -57,6 +68,8 @@ def application(request):
         myuser.contact=contact
         myuser.is_student=True
         myuser.application_no=appno
+        if len(request.FILES)!=0:
+            myuser.image=request.FILES['image']
         
         myuser.save()
 
@@ -74,8 +87,6 @@ def application(request):
             sdata.image=request.FILES['image']
         sdata.save()
 
-        messages.success(request, "applied")
-
         return redirect('/../student/profile')
 
     return render(request, "STUDENTS PAGE\pply.html")
@@ -92,7 +103,7 @@ def result(request):
             login(request, user)
             data1=dict()
             print('LOGGED IN')
-            # data1['username']=user.get_username
+
             return redirect('/../student/profile')
         else:
             msg = 'invalid credentials'
@@ -101,15 +112,18 @@ def result(request):
             
     return render(request, "STUDENTS PAGE\index.html")
 
-def ogout(request):
-    if request.method=='POST':
-        logout(request)
-        messages.success(request, "successfully logged out")
-        return redirect('/')
-    return HttpResponse('alksfjskldjf')
+def logout1(request):
+    logout(request)
+    return redirect('/student/')
+
 
 def profile(request):
-    return render(request, "STUDENTS PAGE\iform.html")
+    if request.user.is_authenticated:
+        print(request.user.image);
+        return render(request, "STUDENTS PAGE\iform.html")
+    else:
+        return HttpResponse("Login First")
+
 
 # dict = {'Name':[],'Contact':[]}
 # dict['name'].append()

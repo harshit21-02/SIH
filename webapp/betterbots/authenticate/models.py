@@ -12,7 +12,7 @@ class User(AbstractUser):
     is_student=models.BooleanField('is_student',default=False)
     is_invigilator=models.BooleanField('is_invigilator',default=False)
     is_evaluator=models.BooleanField('is_evaluator',default=False)
-
+    image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
     
     
     

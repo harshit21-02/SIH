@@ -1,25 +1,76 @@
-<html lang="en">
+{% load static %}
+
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APPLICATION FORM</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href={% static '/INVIGILATOR PAGE/application_details.css' %}>
+    <title>Registration Form Using Bootstrap 4</title>
 </head>
 <body>
-    
 
-    <h1> SAVE YOUR APLICATION FORM </h1>
-    <br>
-    <br>
-
-    <div> APPLICATION NO: </div>
-    <div> NAME: </div>
-    <div> DOB: </div>
-    <div> CONTACT: </div>
-    <div> E-MAIL: </div>
-    <div> CENTER ALLOTED: </div>
-
-
+    <div class="container">
+        <form action="logout1">
+            <h2 class="text-center">Student Final Details</h2>
+        <div class="row jumbotron">
+            <tr>
+                <label for="email"><pre>  </pre></label>
+                <td><div style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;">{{user.image}}</div></td>
+                </tr>
+            <div class="col-sm-6 form-group">
+                <label for="name-f">First Name</label>
+                <div class="form-control" name="fname" id="name-f">{{user.first_name}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="name-l">Last name</label>
+                <div class="form-control" name="lname" id="name-l">{{user.last_name}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="email">E-mail</label>
+                <div class="form-control" name="email" id="email">{{user.email}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="address">Address</label>
+                <div class="form-control" name="Locality" id="address">{{user.address}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="Application">Application No.</label>
+                <div class="form-control" name="Application" id="Application">{{user.application_no}}</div>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="City">City</label>
+                <div class="form-control" name="City" id="City" ></div>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="State">State</label>
+                <div class="form-control" name="State" id="State">{{user.state}}</div>
+            </div>
+            <div class="col-sm-2 form-group">
+                <label for="zip">Postal Code</label>
+                <div class="form-control" name="Zip" id="zip"> {{user.pincode}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="country">Country</label>
+                <div class="form-control" name="country" id="country">{{user.country}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="Date of Birth">Date of Birth</label>
+                <div class="form-control" name="Date" id="dob">{{user.dob}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="Gender">Gender</label>
+                <div class="form-control" name="Gender" id="gender" >{{user.gender}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="tel">Phone No.</label>
+                <div name="phone" class="form-control" id="tel">{{user.contact}}</div>
+            </div>
+        </div>
+        <input  class="button" type="submit" value="logout">
+        </form>
+    </div>
 </body>
 </html>
