@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .header{
     background-color: #add8e6;
     padding-bottom: 10px;
@@ -59,16 +62,28 @@ footer {
     color: rgb(9, 74, 71);
     text-align: center;
     position: fixed;
-  left: 0;
-  bottom: 0;
-  font-family: Helvetica, sans-serif;
+    left: 0;
+    bottom: 0;
+    font-family: Helvetica, sans-serif;
+}
 
-  }
+.details{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.team_details{
+  width: 60%;
+  height: 100%;
+  background-color: aquamarine;
+
+}
 
 footer img{
-    width:200px;
-    height:250px ;
-    border-radius: 50%;
+  width: 85px;
+  height: 124px;
+  border-radius: 50%;
 }
 /* footer h1,h3{
     padding: 0px 50px;
