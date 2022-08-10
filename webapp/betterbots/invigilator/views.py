@@ -24,6 +24,9 @@ def inhome(request):
         user =None
         user = authenticate(username=username, password=password)
         if user is not None:
+            if user.is_invigilator==False:
+                print("UNAUTHORIZED")
+                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
             login(request, user)
             data1=dict()
             data1['username']=user.get_username

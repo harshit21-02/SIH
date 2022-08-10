@@ -87,7 +87,7 @@ def application(request):
             sdata.image=request.FILES['image']
         sdata.save()
 
-        return redirect('/../student/profile')
+        return redirect('/../student/result')
 
     return render(request, "STUDENTS PAGE\pply.html")
 
@@ -100,6 +100,9 @@ def result(request):
         # username=str(username)
         user = authenticate(request,username=username, password=password)
         if user is not None:
+            if user.is_student==False:
+                print("UNAUTHORIZED")
+                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
             login(request, user)
             data1=dict()
             print('LOGGED IN')
@@ -108,7 +111,7 @@ def result(request):
         else:
             msg = 'invalid credentials'
             print(username)
-            return redirect('/') 
+            return HttpResponse("<br><br><center><H1>Invalid Credentials</h1></center>")
             
     return render(request, "STUDENTS PAGE\index.html")
 
