@@ -6,8 +6,8 @@ from django.contrib.auth.models import AbstractUser
 
 class User(AbstractUser):
     application_no=models.TextField('application_no',default='')
-    firstname=models.TextField('first_name',max_length=30,default='')
-    lastname=models.TextField('last_name',max_length=30,default='')
+    fullname=models.TextField('full_name',max_length=30,default='')
+    # lastname=models.TextField('last_name',max_length=30,default='')
     dob=models.DateField('dob',default='2001-1-1')
     contact=models.TextField('contact',default='')
     centre=models.TextField('centre',default='')

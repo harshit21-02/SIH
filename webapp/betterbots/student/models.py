@@ -11,7 +11,7 @@ from django.forms import ImageField
 
 class studata(models.Model):
     appno=models.TextField('appno',max_length=30,default='')
-    firstname=models.TextField('first_name',max_length=30,default='')
+    fullname=models.TextField('first_name',max_length=30,default='')
     # lastname=models.TextField('last_name',max_length=30,default='')
     dob=models.DateField('dob',default='2001-1-1')
     email=models.EmailField('email',max_length=30,default='')

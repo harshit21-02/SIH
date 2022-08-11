@@ -72,7 +72,7 @@ def application(request):
             # return redirect('/../student/application/')
 
         myuser = User.objects.create_user(username = username, password = password)
-        myuser.first_name=fname
+        myuser.fullname=fname
         # myuser.last_name=lname
         myuser.email=mail
         myuser.dob=dob
@@ -85,10 +85,7 @@ def application(request):
         myuser.adress1 = adress1
         myuser.adress2 = adress2
         myuser.is_student=True
-        print(myuser.adress1)
-        print(myuser.state)
-        print(myuser.dob)
-        print(myuser.email)
+      
         
         myuser.application_no=appno
         if len(request.FILES)!=0:
@@ -100,7 +97,7 @@ def application(request):
         
         sdata=studata()
         sdata.appno=appno
-        sdata.firstname=fname
+        sdata.fullname=fname
         sdata.email=mail
         sdata.dob=dob
         sdata.contact=contact
@@ -150,7 +147,7 @@ def logout1(request):
 
 def profile(request):
     if request.user.is_authenticated:
-        print(request.user.image);
+        print(request.user.image)
         return render(request, "STUDENTS PAGE\iform.html")
     else:
         return HttpResponse("<br><br><center><H1>Login First</h1></center>")
