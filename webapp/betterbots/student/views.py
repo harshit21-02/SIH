@@ -27,12 +27,23 @@ def application(request):
     if request.method=="POST":
         username =  request.POST['username']
         fname:str = request.POST['fname']
-        lname:str = request.POST['lname']
+        # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
-        password:str =  str(request.POST['password'])
+        password:str =  str(request.POST['fpassword'])
         cnfpass: str = str(request.POST['cnfpass'])
+        gender:str = request.POST['gender']
+        adress1:str = request.POST['ad1']
+        adress2:str = request.POST['ad2']
+        state:str = request.POST['state']
+        pincode:str = request.POST['pin']
+        landmark:str = request.POST['ld_mark']
+        ntly:str = request.POST['ntly']
+
+
+       
+
         
 
         if User.objects.filter(username=username).exists():
@@ -62,11 +73,23 @@ def application(request):
 
         myuser = User.objects.create_user(username=username, password = password)
         myuser.first_name=fname
-        myuser.last_name=lname
+        # myuser.last_name=lname
         myuser.email=mail
         myuser.dob=dob
         myuser.contact=contact
+        myuser.password = password
+        myuser.gender = gender
+        myuser.pincode = pincode
+        myuser.landmark = landmark
+        myuser.state = state
+        myuser.adress1 = adress1
+        myuser.adress2 = adress2
         myuser.is_student=True
+        print(myuser.adress1)
+        print(myuser.state)
+        print(myuser.dob)
+        print(myuser.email)
+        
         myuser.application_no=appno
         if len(request.FILES)!=0:
             myuser.image=request.FILES['image']
@@ -78,10 +101,16 @@ def application(request):
         sdata=studata()
         sdata.appno=appno
         sdata.firstname=fname
-        sdata.lastname=lname
-        sdata.dob=dob
         sdata.email=mail
+        sdata.dob=dob
         sdata.contact=contact
+        sdata.password = password
+        sdata.gender = gender
+        sdata.pincode = pincode
+        sdata.landmark = landmark
+        sdata.state = state
+        sdata.adress1 = adress1
+        sdata.adress2 = adress2
         sdata.center=center
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
