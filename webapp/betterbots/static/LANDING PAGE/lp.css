@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+}
 .header{
     background-color: #add8e6;
     padding-bottom: 10px;
@@ -52,34 +55,91 @@ nav a{
     background-color: #ddd;
     color: black;
   }
-footer {
+
+  .body_image img{
+    width: 100%;
+    height: 300px;
+  }
+
+  footer {
     display: block;
     width: 100%;
     background-color:  darkturquoise;
     color: rgb(9, 74, 71);
     text-align: center;
-    position: fixed;
-  left: 0;
-  bottom: 0;
-  font-family: Helvetica, sans-serif;
-
+    left: 0;
+    bottom: 0;
+    font-family: Helvetica, sans-serif;
   }
 
-footer img{
-    width:200px;
-    height:250px ;
-    border-radius: 50%;
+
+
+.details{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
+
+.team_details{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.column1{
+  
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.column2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.column3{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  padding-bottom: 10px;
+}
+
+.photo{
+    border-radius: 50%;
+    height: 20%;
+    width: 20%;
+}
+
+.member_name{
+  padding-top: 20px;
+  padding-left: 21px;
+  color:rgb(2, 51, 75)
+}
+
+.member_name:hover{
+  cursor:pointer;
+}
+
+.names{
+  color:rgb(2, 51, 75)
+}
+
 /* footer h1,h3{
     padding: 0px 50px;
 } */
 body{
-    background-image:url("https://cdn.pixabay.com/photo/2022/07/04/21/56/space-7301998__340.jpg");
-    background-repeat: no-repeat;
+  
     opacity:1.5;
     background-size: 100% 300%;
     padding: 0px 0px 0px 0px;
     margin:0;
+    background-color:  darkturquoise;
 }
 
 * {
@@ -97,6 +157,7 @@ body{
     padding: 0 10px 10px;
   }
   
+  
   /* Remove extra left and right margins, due to padding in columns */
   .row {margin: 0 -5px;}
   
@@ -108,13 +169,34 @@ body{
   }
   
   /* Style the counter cards */
-  .card {
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
-    padding: 16px;
-    text-align: center;
-    background-color: #add8e6;
-    
+  
+  .cards{
+    display: flex;
+    flex-direction: row;
+    height: 33.3%;
+    width: 50%;
+    padding: 10px;
+    background-color: #19cece;
+
+    --b: 0.1em;   /* the thickness of the line */
+     --c: #000000; /* the color */
+  
+    color: rgba(0, 0, 0, 0);
+    padding-block: var(--b);
+    background: 
+      linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
+      linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
+    -webkit-background-clip: text,padding-box;
+        background-clip: text,padding-box;
+    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
   }
+
+  .cards:hover{
+    --_p: 100%;
+    --_s: .3s;
+  }
+
+  
   
   /* Responsive columns - one column layout (vertical) on small screens */
   /* @media screen and (max-width: 500px) {
