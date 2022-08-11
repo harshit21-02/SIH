@@ -26,13 +26,13 @@ def studenthome(request):
 def application(request):
     if request.method=="POST":
         username =  request.POST['username']
-        fname:str = request.POST['fname']
-        lname:str = request.POST['lname']
+        fname:str = request.POST['name']
+        lname:str = request.POST['name']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
         password:str =  str(request.POST['password'])
-        cnfpass: str = str(request.POST['cnfpass'])
+        cnfpass: str = str(request.POST['cnfpassword'])
         
 
         if User.objects.filter(username=username).exists():
@@ -94,6 +94,7 @@ def result(request):
     if request.method=="POST":
         username =  request.POST['username']
         password =  request.POST['password']
+        print(username)
         # password=str(password) 
         # username=str(username)
         user = authenticate(request,username=username, password=password)
