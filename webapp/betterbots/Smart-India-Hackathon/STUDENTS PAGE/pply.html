@@ -1,118 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BETTER BOTS</title>
-    <link rel="stylesheet" href="../static/STUDENTS PAGE/ppyl.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BETTER BOTS</title>
+
+  <link rel="stylesheet" href="../../static/STUDENTS PAGE/ppyl.css">
+  <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
 </head>
 <body>
-  
-  <div></div>
-  {% for message in messages%}
-
-  <p style="color: red;">{{message}}</p>
-
-  {% endfor %}
-
   <div class="container">
-    <form action="#" method="POST" enctype="multipart/form-data">
-      {%csrf_token%}
-      <div class="row">
-        <div class="col-25">
-          <label for="username">USERNAME</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="name" name="username" placeholder="ENTER YOUR USERNAME">
-        </div>
+    <header>Registration</header>
+    <form action="#" method="post" enctype="multipart/form-data">
+
+      <div class="fields">
+        <div class="input-field">
+          <label>Full Name</label>
+          <input type="text" placeholder="Enter your name" required>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="fname">FIRST NAME</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="name" name="fname" placeholder="ENTER YOUR FIRST NAME">
-        </div>
+
+      <div class="input-field">
+          <label>Date of Birth</label>
+          <input type="date" placeholder="Enter birth date" required>
       </div>
-      <div class="row">
-        <div class="col-25">
-          <label for="lname">LAST NAME</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="name" name="lname" placeholder="ENTER YOUR LAST NAME">
-        </div>
-        </div>
+
+      <div class="input-field">
+          <label>Email</label>
+          <input type="text" placeholder="Enter your email" required>
+      </div>
+
+      <div class="input-field">
+          <label>Mobile Number</label>
+          <input type="number" placeholder="Enter mobile number" required>
+      </div>
+
+      <div class="input-field">
+          <label>Gender</label>
+          <select required>
+              <option disabled selected>Select gender</option>
+              <option>Male</option>
+              <option>Female</option>
+              <option>Others</option>
+          </select>
+      </div>
+
+      <div class="input-field">
+        <label>Password</label>
+        <input type="password" placeholder="Enter your password" required>
       </div>
       
-      
-      <div class="row">
-        <div class="col-25">
-          <label for="dob">DATE OF BIRTH</label>
-        </div>
-
-        <div class="col-25">
-          <input type="date" data-date="" data-date-format="YYYY/MM/DD" id="application_number" name="dob" placeholder="ENTER YOUR DATE OF BIRTH">
-        </div>
+      <div class="input-field">
+        <label>Confirm Password</label>
+        <input type="password" placeholder="Confirm your password" required>
       </div>
 
-      <div class="row">
-        <div class="col-25">
-          <label for="mail">E-MAIL</label>
+      <div class="input-field">
+        <label>Category</label>
+        <select required>
+            <option disabled selected>Select Category</option>
+            <option>General</option>
+            <option>General-EWS</option>
+            <option>SC</option>
+            <option>ST</option>
+            <option>OBC</option>
+        </select>
+    </div>
+
+      <div class="fields">
+        
+
+        <div class="input-field">
+          <label>Address Line-1</label>
+          <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter your address line 1"></textarea>
         </div>
-        <div class="col-75">
-          <input type="email" id="application_number" name="mail" placeholder="ENTER YOUR E-MAIL ADDRESS">
+
+        <div class="input-field">
+          <label>Address Line-2</label>
+          <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter your address line 2"></textarea>
+        </div>
+        
+        <div class="input-field">
+          <label>Landmark</label>
+          <textarea rows="4" cols="50" name="comment" form="usrform" placeholder="Enter the landmark"></textarea>
+        </div>
+
+
+        <div class="input-field">
+          <label>Nationality</label>
+            <input type="text" placeholder="Enter nationality" required>
+          </div>
+
+          <div class="input-field">
+            <label>State</label>
+              <input type="text" placeholder="Enter your state" required>
+            </div>
+
+            <div class="input-field">
+              <label>Pin-Code</label>
+                <input type="number" placeholder="Enter your Pin Code" required>
+              </div>
+          </div>
+
+          </div>
+
+          
+          <button class="sumbit">
+            <span class="btnText">Submit</span>
+            <i class="uil uil-navigator"></i>
+        </button>
         </div>
       </div>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="contact">PHONE NO.</label>
-        </div>
-        <div class="col-75">
-          <input type="text" id="application_number" name="contact" placeholder="ENTER YOUR PHONE NUMBER">
-        </div>
-      </div>
-
-      <!-- <div class="row">
-        <div class="col-25">
-          <label for="IMAGE">UPLOAD IMAGE</label>
-        </div>
-        <div class="col-75">
-          <input type="image" src="image.gif" style="float:left" width="48" height="48" id="password" name="password" placeholder="UPLOAD YOUR RECENT IMAGE">
-        </div>
-      </div> -->
-
-      <div class="row">
-        <div class="col-25">
-          <label for="password">CREATE PASSWORD</label>
-        </div>
-        <div class="col-75">
-          <input type="password" id="password" name="password" placeholder="CREATE PASSWORD">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-25">
-          <label for="cnfpass">CONFIRM PASSWORD</label>
-        </div>
-        <div class="col-75">
-          <input type="password" id="password" name="cnfpass" placeholder="CONFIRM YOUR PASSWORD">
-        </div>
-
-        <form action="/action_page.php">
-          <label for="image"> IMAGE </label>
-          <input type="file" id="myFile" Required name="image">
-          <input type="submit" value="VERIFY AND SUBMIT">
-        </form>
-      </div>
-
-      <div class="row">
-        <input type="submit" value="APPLY">
-      </div>
-      
-    </form>
+    </div>
+  </form>
   </div>
-    
+
+  <script>
+    const form = document.querySelector("form"),
+        nextBtn = form.querySelector(".nextBtn"),
+        backBtn = form.querySelector(".backBtn"),
+        allInput = form.querySelectorAll(".first input");
+
+
+nextBtn.addEventListener("click", ()=> {
+    allInput.forEach(input => {
+        if(input.value != ""){
+            form.classList.add('secActive');
+        }else{
+            form.classList.remove('secActive');
+        }
+    })
+})
+
+backBtn.addEventListener("click", () => form.classList.remove('secActive'));
+</script>
 </body>
 </html>
