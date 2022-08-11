@@ -16,8 +16,15 @@ class studata(models.Model):
     dob=models.DateField('dob',default='2001-1-1')
     email=models.EmailField('email',max_length=30,default='')
     contact=models.TextField('contact',default='')
+    city=models.TextField('city', default = '')
+    state=models.TextField('state', default='')
+    country=models.TextField('country', default='')
+    pincode=models.TextField('pincode',max_length = 6, default='')
+    password1=models.TextField('pass1', default='')
+    password2=models.TextField('pass2', default='')
     center=models.TextField('center',max_length=30,default='')
     image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
+
     
     def __str__(self):
         return self.appno
