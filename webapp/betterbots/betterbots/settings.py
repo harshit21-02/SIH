@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'student',
     'authenticate',
     'invigilator',
-    'qrgenerator'
+    'qrgenerator',
+    'evaluator'
 ]
 
 MIDDLEWARE = [

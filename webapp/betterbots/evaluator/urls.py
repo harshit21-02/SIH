@@ -16,13 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
-from . import views
 from django.conf import settings
+from django.contrib.auth import views as auth_view
+from . import views
+
+app_name="evhome"
 urlpatterns = [
+    
     path('admin/', admin.site.urls),
-    path('', views.landing, name="landing"),
-    path('student/',include('student.urls', namespace='studenthome')),
-    path('invigilator/',include('invigilator.urls', namespace='inhome')),
-    path('evaluator/',include('evaluator.urls', namespace='evhome')),
-    path('qrgenerator/',include('qrgenerator.urls', namespace='qrgenerator')),
+    path('', views.evlogin, name="evlogin"),
+    path('scanqr',views.scanqr, name="scanqr"),
+
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

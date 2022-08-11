@@ -60,7 +60,7 @@ def application(request):
 
             # return redirect('/../student/application/')
 
-        myuser = User.objects.create_user(username=username, password = password)
+        myuser = User.objects.create_user(username = username, password = password)
         myuser.first_name=fname
         myuser.last_name=lname
         myuser.email=mail
@@ -86,9 +86,7 @@ def application(request):
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
         sdata.save()
-
         return redirect('/../student/result')
-
     return render(request, "STUDENTS PAGE\pply.html")
 
 def result(request):
