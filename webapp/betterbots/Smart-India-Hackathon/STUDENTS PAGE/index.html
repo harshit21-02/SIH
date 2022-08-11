@@ -11,11 +11,11 @@
             {% csrf_token %}
           <div class="user-box">
 
-            <input type="text" id="user" name="" placeholder="" class="form-control">
-            <label>APPLICATION NO</label>
+            <input type="text" id="user" name="username" placeholder="" class="form-control">
+            <label>USERNAME</label>
           </div>
           <div class="user-box">
-            <input type="password" id="pass" name="" placeholder="" class="form-control">
+            <input type="password" id="pass" name="password" placeholder="" class="form-control">
             <label>PASSWORD</label>
           </div>
           <a href="#">
@@ -23,7 +23,7 @@
             <span></span>
             <span></span>
             <span></span>
-            <button id="submit" class="btn btn-primary" type="submit">submit</button>
+            <input  class="button" type="submit" value="Login">
           </a>
         </form>
       </div>
