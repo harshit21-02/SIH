@@ -17,32 +17,44 @@
     <form action="#" method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
+
       <div class="fields">
         
         <div class="input-field">
+          <label>Username</label>
+          <input type="text" name="username" placeholder="Enter your username" required>
+      </div>
+        <div class="input-field">
           <label>Full Name</label>
           <input type="text" name = "fname" placeholder="Enter your name" required>
+
       </div>
 
       <div class="input-field">
           <label>Date of Birth</label>
+
           <input type="date" name = "dob" placeholder="Enter birth date" required>
+
       </div>
 
       <div class="input-field">
           <label>Email</label>
+
           <input type="text" name = "mail" placeholder="Enter your email" required>
+
       </div>
 
       <div class="input-field">
           <label>Mobile Number</label>
+
           <input type="number" name = "contact" placeholder="Enter mobile number" required>
+
       </div>
 
       <div class="input-field">
           <label>Gender</label>
-          <select required>
-              <option disabled selected>Select gender</option>
+          <select name="gender"  required>
+              <option disable d selected>Select gender</option>
               <option>Male</option>
               <option>Female</option>
               <option>Others</option>
@@ -51,12 +63,16 @@
 
       <div class="input-field">
         <label>Password</label>
+
         <input type="password" name = "fpassword" placeholder="Enter your password" required>
+
       </div>
       
       <div class="input-field">
         <label>Confirm Password</label>
+
         <input type="password" name = "spassword" placeholder="Confirm your password" required>
+
       </div>
 
       <div class="input-field">
@@ -86,23 +102,31 @@
         
         <div class="input-field">
           <label>Landmark</label>
+
           <textarea rows="4" cols="50" name="ld_mark" form="usrform" placeholder="Enter the landmark"></textarea>
+
         </div>
 
 
         <div class="input-field">
           <label>Nationality</label>
+
             <input type="text" name = "ntly" placeholder="Enter nationality" required>
+
           </div>
 
           <div class="input-field">
             <label>State</label>
+
               <input type="text" name = "state" placeholder="Enter your state" required>
+
             </div>
 
             <div class="input-field">
               <label>Pin-Code</label>
+
                 <input type="number" name = "pin" placeholder="Enter your Pin Code" required>
+
               </div>
           </div>
 
