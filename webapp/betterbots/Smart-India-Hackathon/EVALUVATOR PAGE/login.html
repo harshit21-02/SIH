@@ -13,11 +13,11 @@
             <!-- {% csrf_token %} -->
           <div class="user-box">
 
-            <input type="text" id="centre" name="" class="form-control" >
+            <input type="text" id="centre" name="Center_ID" class="form-control" >
             <label>Center ID</label>
           </div>
           <div class="user-box">
-            <input type="password" id="pass" name="" class="form-control" >
+            <input type="password" id="pass" name="password" class="form-control" >
             <label>Password</label>
           </div>
           <a href="#">
@@ -50,12 +50,12 @@
              button: "Fill Again",
                   });
         }
-        else{
-          swal({
-             title: "Empty Fields!",
-            icon: "success",
-                  });
-        }
+        // else{
+        //   swal({
+        //      title: "Empty Fields!",
+        //     icon: "success",
+        //           });
+        // }
         }
         );
       </script>
