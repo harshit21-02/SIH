@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,17 +12,12 @@
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-{% if messages %}
   
-  {% for message in messages %}
-  <div style="padding: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-  {% endfor %}
-
-{% endif %}
-  <div class="container">
+<div class="container">
     <span>
       
     </span>
+    
     <header>Registration</header>
          
     <form action="#" method="post" enctype="multipart/form-data">
@@ -42,7 +38,7 @@
 		<div class="panel">
 			<div class="button_outer">
 				<div class="btn_upload">
-					<input type="file" id="upload_file" name="">
+					<input type="file" id="upload_file" name="image">
 					Upload Image
 				</div>
 				<div class="processing_bar"></div>
@@ -133,8 +129,18 @@
             <span class="btnText">Submit</span>
             <i class="uil uil-navigator"></i>
         </button>
+
       </div>
 
+      <div>
+        {% if messages %}
+          <br>
+          {% for message in messages %}
+          <div style="padding: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+          <br>
+        {% endif %}
+      </div>
 
     </div>
 
@@ -193,5 +199,6 @@ var btnUpload = $("#upload_file"),
 		btnOuter.removeClass("file_uploaded");
 	});
 </script>
+
 </body>
 </html>

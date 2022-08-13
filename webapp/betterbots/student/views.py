@@ -24,9 +24,9 @@ def studenthome(request):
     return render(request, "STUDENTS PAGE\home.html")
 
 def application(request):
+    
     if request.method=="POST":
         username =  request.POST['username']
-
         fname:str = request.POST['fname']
         # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
@@ -47,8 +47,6 @@ def application(request):
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
-
-
 
         global x
         x=x+1
@@ -112,6 +110,7 @@ def application(request):
 
 def result(request):
     msg = None
+    
     if request.method=="POST":
         username =  request.POST['username']
         password =  request.POST['password']
@@ -123,24 +122,22 @@ def result(request):
                 msg = 'Unauthorized'
                 print(msg)
                 messages.info(request,'User is UNAUTHORIZED!')
-                return redirect('/student/')
+                return redirect('/../student/result')
             login(request, user)
             data1=dict()
             print('LOGGED IN')
 
             return redirect('/../student/profile')
         else:
-            msg = 'invlaid credentials'
-            print(msg)
             messages.info(request,'User is not registered!')
-            return redirect('/student/')
+            return redirect('/../student/result')
             
     return render(request, "STUDENTS PAGE\index.html")
 
 def logout1(request):
     logout(request)
     messages.info(request,'Successfully logged out!')
-    return redirect('/student/')
+    return redirect('/../student/result')
 
 def profile(request):
     if request.user.is_authenticated:
@@ -149,7 +146,7 @@ def profile(request):
         msg = 'Unauthorized'
         print(msg)
         messages.info(request,'UNAUTHORIZED!')
-        return HttpResponse("<br><br><center><H1>Login First</h1></center>")
+        return redirect('/../student/result')
 
 
 # dict = {'Name':[],'Contact':[]}

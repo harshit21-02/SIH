@@ -21,24 +21,18 @@
                 <td><div style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;">{{user.image}}</div></td>
                 </tr>
             <div class="col-sm-6 form-group">
-                <label for="name-f">First Name</label>
+                <label for="name-f">Full Name</label>
                 <div class="form-control" name="fname" id="name-f">{{user.first_name}}</div>
             </div>
-            <div class="col-sm-6 form-group">
-                <label for="name-l">Last name</label>
-                <div class="form-control" name="lname" id="name-l">{{user.last_name}}</div>
-            </div>
+            
             <div class="col-sm-6 form-group">
                 <label for="email">E-mail</label>
                 <div class="form-control" name="email" id="email">{{user.email}}</div>
             </div>
+            
             <div class="col-sm-6 form-group">
-                <label for="address">Address</label>
-                <div class="form-control" name="Locality" id="address">{{user.address}}</div>
-            </div>
-            <div class="col-sm-6 form-group">
-                <label for="Application">Application No.</label>
-                <div class="form-control" name="Application" id="Application">{{user.application_no}}</div>
+                <label for="Application">Username</label>
+                <div class="form-control" name="Application" id="Application">{{user.username}}</div>
             </div>
             <div class="col-sm-2 form-group">
                 <label for="City">City</label>
@@ -48,10 +42,7 @@
                 <label for="State">State</label>
                 <div class="form-control" name="State" id="State">{{user.state}}</div>
             </div>
-            <div class="col-sm-2 form-group">
-                <label for="zip">Postal Code</label>
-                <div class="form-control" name="Zip" id="zip"> {{user.pincode}}</div>
-            </div>
+           
             <div class="col-sm-6 form-group">
                 <label for="country">Country</label>
                 <div class="form-control" name="country" id="country">{{user.country}}</div>
@@ -69,7 +60,13 @@
                 <div name="phone" class="form-control" id="tel">{{user.contact}}</div>
             </div>
         </div>
-        <input  class="button" type="submit" value="logout">
+        <a>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <input  class="button" type="submit" value="Logout">
+          </a>
         </form>
     </div>
 </body>
