@@ -13,8 +13,11 @@
 <body>
  
   <div class="container">
-    
+    <span>
+      
+    </span>
     <header>Registration</header>
+         
     <form action="#" method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
@@ -98,42 +101,16 @@
         <input type="password" name = "spassword" placeholder="Confirm your password" required>
       </div>
 
-<<<<<<< HEAD
-        
- 
-=======
       <div class="input-field">
-        <label>Category</label>
-        <select required>
-            <option disabled selected>Select Category</option>
-            <option>General</option>
-            <option>General-EWS</option>
-            <option>SC</option>
-            <option>ST</option>
-            <option>OBC</option>
-        </select>
-    </div>
+        <label>City</label>
+        <input type="number" name = "city" placeholder="Enter your City" required>
+       </div>
 
-    
+       <div class="input-field">
+        <label>State</label>
 
-        <div class="input-field">
-          <label>Address Line-1</label>
-          <textarea rows="4" cols="50" name="ad1" form="usrform" placeholder="Enter your address line 1"></textarea>
+          <input type="text" name = "state" placeholder="Enter your state" required>
         </div>
-
-        <div class="input-field">
-          <label>Address Line-2</label>
-          <textarea rows="4" cols="50" name="ad2" form="usrform" placeholder="Enter your address line 2"></textarea>
-        </div>
-        
-        <div class="input-field">
-          <label>Landmark</label>
-
-          <textarea rows="4" cols="50" name="ld_mark" form="usrform" placeholder="Enter the landmark"></textarea>
-
-        </div>
-
->>>>>>> c5466337ad3d0d7d64606bdca9c470bc31a99835
 
         <div class="input-field">
           <label>Nationality</label>
@@ -142,33 +119,20 @@
 
           </div>
 
-          <div class="input-field">
-            <label>State</label>
-
-              <input type="text" name = "state" placeholder="Enter your state" required>
-            </div>
-
-            <div class="input-field">
-              <label>Pin-Code</label>
-
-<<<<<<< HEAD
-              <input type="number" name = "pin" placeholder="Enter your Pin Code" required>
-             </div>
-          </div>
-=======
-                <input type="number" name = "pin" placeholder="Enter your Pin Code" required>
-
-              </div>
           
->>>>>>> c5466337ad3d0d7d64606bdca9c470bc31a99835
 
-          </div>
-
+            
           
           <button class="sumbit">
             <span class="btnText">Submit</span>
             <i class="uil uil-navigator"></i>
         </button>
+      </div>
+
+
+    </div>
+
+    
         </div>
       </div>
     </div>
