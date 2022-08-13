@@ -26,14 +26,13 @@ def studenthome(request):
 def application(request):
     if request.method=="POST":
         username =  request.POST['username']
-
         fname:str = request.POST['fname']
         # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
         password:str =  str(request.POST['fpassword'])
-        cnfpass: str = str(request.POST['cnfpass'])
+        cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
         adress1:str = request.POST['ad1']
         adress2:str = request.POST['ad2']
@@ -94,14 +93,14 @@ def application(request):
         myuser.save()
 
         center:str=(str)('to be assigned')
-        
-        sdata=studata()
+        sdata = studata.objects.create_user(username = username, password = password)
+        # sdata=studata()
         sdata.appno=appno
         sdata.fullname=fname
         sdata.email=mail
         sdata.dob=dob
         sdata.contact=contact
-        sdata.password = password
+        # sdata.password = password
         sdata.gender = gender
         sdata.pincode = pincode
         sdata.landmark = landmark
@@ -109,6 +108,7 @@ def application(request):
         sdata.adress1 = adress1
         sdata.adress2 = adress2
         sdata.center=center
+
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
         sdata.save()
