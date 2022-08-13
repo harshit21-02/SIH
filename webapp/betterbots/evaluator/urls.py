@@ -25,6 +25,7 @@ urlpatterns = [
     
     path('admin/', admin.site.urls),
     path('', views.evlogin, name="evlogin"),
+    path('logev', views.logev, name="logev"),
     path('scanqr',views.scanqr, name="scanqr"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

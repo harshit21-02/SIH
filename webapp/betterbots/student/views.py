@@ -33,7 +33,7 @@ def application(request):
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
         password:str =  str(request.POST['fpassword'])
-        cnfpass: str = str(request.POST['cnfpass'])
+        cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
         adress1:str = request.POST['ad1']
         adress2:str = request.POST['ad2']
