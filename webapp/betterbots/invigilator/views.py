@@ -41,7 +41,6 @@ def inhome(request):
 
 def scan(request):
     if request.user.is_authenticated:
-        print(request.user.image)
         return render(request, "INVIGILATOR\scan.html")
     else:
         msg = 'Unauthorized'

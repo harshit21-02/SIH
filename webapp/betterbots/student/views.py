@@ -35,23 +35,18 @@ def application(request):
         password:str =  str(request.POST['fpassword'])
         cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
-        adress1:str = request.POST['ad1']
-        adress2:str = request.POST['ad2']
         state:str = request.POST['state']
-        pincode:str = request.POST['pin']
-        landmark:str = request.POST['ld_mark']
+        # pincode:str = request.POST['pin']
+        city:str = request.POST['city']
         ntly:str = request.POST['ntly']
 
 
-       
-        
-
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
-            return redirect('/application/')
+            return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
-            return redirect('/application/')
+            return redirect('/student/application')
 
 
 
@@ -79,11 +74,11 @@ def application(request):
         myuser.contact=contact
         myuser.password = password
         myuser.gender = gender
-        myuser.pincode = pincode
-        myuser.landmark = landmark
+        # myuser.pincode = pincode
+        # myuser.landmark = landmark
         myuser.state = state
-        myuser.adress1 = adress1
-        myuser.adress2 = adress2
+        # myuser.adress1 = adress1
+        # myuser.adress2 = adress2
         myuser.is_student=True
       
         
@@ -103,11 +98,11 @@ def application(request):
         sdata.contact=contact
         sdata.password = password
         sdata.gender = gender
-        sdata.pincode = pincode
-        sdata.landmark = landmark
+        # sdatax.pincode = pincode
+        # sdata.landmark = landmark
         sdata.state = state
-        sdata.adress1 = adress1
-        sdata.adress2 = adress2
+        # sdata.adress1 = adress1
+        # sdata.adress2 = adress2
         sdata.center=center
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
@@ -120,36 +115,40 @@ def result(request):
     if request.method=="POST":
         username =  request.POST['username']
         password =  request.POST['password']
-        print(username)
         # password=str(password) 
         # username=str(username)
         user = authenticate(request,username=username, password=password)
         if user is not None:
             if user.is_student==False:
-                print("UNAUTHORIZED")
-                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is UNAUTHORIZED!')
+                return redirect('/student/')
             login(request, user)
             data1=dict()
             print('LOGGED IN')
 
             return redirect('/../student/profile')
         else:
-            msg = 'invalid credentials'
-            print(username)
-            return HttpResponse("<br><br><center><H1>Invalid Credentials</h1></center>")
+            msg = 'invlaid credentials'
+            print(msg)
+            messages.info(request,'User is not registered!')
+            return redirect('/student/')
             
     return render(request, "STUDENTS PAGE\index.html")
 
 def logout1(request):
     logout(request)
+    messages.info(request,'Successfully logged out!')
     return redirect('/student/')
-
 
 def profile(request):
     if request.user.is_authenticated:
-        print(request.user.image)
         return render(request, "STUDENTS PAGE\iform.html")
     else:
+        msg = 'Unauthorized'
+        print(msg)
+        messages.info(request,'UNAUTHORIZED!')
         return HttpResponse("<br><br><center><H1>Login First</h1></center>")
 
 
