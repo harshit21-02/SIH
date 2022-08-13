@@ -30,15 +30,26 @@ def evlogin(request):
                 print("UNAUTHORIZED")
                 return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
             login(request, user)
-            data1=dict()
-            data1['username']=user.get_username
             return redirect('/../evaluator/scanqr')
         else:
-            msg = 'invlaid credentials'
+            msg = 'User is not REGISTERED'
             print(msg)
-            return redirect('/')  
+            messages.info(request,'User is not REGISTERED ')
+            return redirect('/../evaluator/') 
     return render(request, "EVALUATOR PAGE\login.html")
 
 def scanqr(request):
-    
-    return render(request, "EVALUATOR PAGE\scan.html")
+    if request.user.is_authenticated:
+        # print(request.user.image)
+        return render(request, "EVALUATOR PAGE\scan.html")
+    else:
+        msg = 'Unauthorized'
+        print(msg)
+        messages.info(request,'UNAUTHORIZED!')
+        return redirect('/../evaluator/')
+
+
+def logev(request):
+    logout(request)
+    messages.info(request,'Successfully logged out!')
+    return redirect('/../evaluator/')
