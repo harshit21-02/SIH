@@ -18,34 +18,40 @@ def inhome(request):
         username: str =  request.POST['Center_ID']
         password =  request.POST['password']
         password=str(password) 
-        print(username)
-        print(password)
+        # print(username)
+        # print(password)
         
         user =None
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_invigilator==False:
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is UNAUTHORIZED!')
                 print("UNAUTHORIZED")
-                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
+                return redirect('/../invigilator/') 
             login(request, user)
-            data1=dict()
-            data1['username']=user.get_username
             return redirect('/../invigilator/scan')
         else:
             msg = 'invlaid credentials'
             print(msg)
-            return redirect('/')  
+            messages.info(request,'User is not registered!')
+            return redirect('/../invigilator/')  
     return render(request, "INVIGILATOR\index.html")
 
-
-
-
 def scan(request):
-    # print(data['username'])
-    return render(request, "INVIGILATOR\scan.html")
+    if request.user.is_authenticated:
+        return render(request, "INVIGILATOR\scan.html")
+    else:
+        msg = 'Unauthorized'
+        print(msg)
+        messages.info(request,'UNAUTHORIZED!')
+        return redirect('/../invigilator/') 
+    
 
 def logo(request):
     logout(request)
+    messages.info(request,'Successfully logged out!')
     return redirect('/../invigilator/')
 
 
