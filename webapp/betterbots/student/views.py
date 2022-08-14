@@ -66,7 +66,7 @@ def application(request):
 
             # return redirect('/../student/application/')
 
-        myuser = User.objects.create_user(username = username, password = password)
+        myuser = User.objects.create_user(username = username,password=password)
         myuser.fullname=fname
         myuser.dob=dob
         myuser.email=mail
@@ -75,7 +75,7 @@ def application(request):
         myuser.city = city
         myuser.state = state
         myuser.nationality = ntly
-        myuser.password = password
+        myuser.cpassword = password
         myuser.is_student=True
       
 
@@ -124,10 +124,18 @@ def result(request):
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
             login(request, user)
-            posts=studata.objects.filter(username=username,password=password)
-            print('LOGGED IN')
+            post=studata.objects.get(username=username)
+            
+            # posts={
+            #     'username': post.username,
+            #     'fullname': post.fullname,
+            #     'email': post.email,
+            #     'contact': post.contact,
+            #     'gender': post.gender,
+            # }
+            # print(posts)
 
-            return redirect('/../student/profile',posts)
+            return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
         else:
             messages.info(request,'User is not registered!')
             return redirect('/../student/result')
