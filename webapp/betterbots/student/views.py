@@ -36,16 +36,23 @@ def application(request):
         cnfpass: str = str(request.POST['spass'])
         city:str = request.POST['city']
         state:str = request.POST['state']
+<<<<<<< HEAD
 
+=======
+>>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         ntly:str = request.POST['ntly']
 
-
+        if(password != cnfpass):
+            messages.error(request, 'Password and Confirm password are not same!')
+            return redirect('/student/application')
+        
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
             return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
+        
 
         global x
         x=x+1
@@ -68,12 +75,19 @@ def application(request):
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
+<<<<<<< HEAD
 
+=======
+>>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
         myuser.nationality = ntly
         myuser.password = password
+<<<<<<< HEAD
+=======
+
+>>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         myuser.is_student=True
       
 
@@ -87,6 +101,7 @@ def application(request):
         # sdata = studata.objects.create_user(username = username, password = password)
         sdata=studata()
         sdata.appno=appno
+        sdata.username = username
         sdata.fullname=fname
         sdata.dob=dob
         sdata.email=mail
@@ -94,7 +109,12 @@ def application(request):
         sdata.gender = gender
         sdata.city = city
         sdata.state = state
+<<<<<<< HEAD
         sdata.password = password
+=======
+        sdata.nationality = ntly
+        # sdata.password = password
+>>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
 
         sdata.center=center
 

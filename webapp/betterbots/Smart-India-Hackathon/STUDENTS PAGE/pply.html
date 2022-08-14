@@ -12,14 +12,18 @@
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
+ 
+  <div class="container">
+=======
   
 <div class="container">
     <span>
       
     </span>
+>>>>>>> be22f8983aaab7a7f7c0dd49a838b48015a35827
     
     <header>Registration</header>
-         
     <form action="#" method="post" enctype="multipart/form-data">
       {% csrf_token %}
 
@@ -109,20 +113,24 @@
 
       <div class="input-field">
         <label>City</label>
+
         <input type="number" name = "city" placeholder="Enter your City" required>
        </div>
 
-       <div class="input-field">
-        <label>State</label>
+        
+          <div class="input-field">
+            <label>State</label>
 
-          <input type="text" name = "state" placeholder="Enter your state" required>
-        </div>
+              <input type="text" name = "state" placeholder="Enter your state" required>
+            </div>
+            <div class="input-field">
+              <label>Nationality</label>
+                <input type="text" name = "ntly" placeholder="Enter nationality" required>
+              </div>
 
-        <div class="input-field">
-          <label>Nationality</label>
-            <input type="text" name = "ntly" placeholder="Enter nationality" required>
-          </div>
+           
           
+
           <button class="sumbit">
             <span class="btnText">Submit</span>
             <i class="uil uil-navigator"></i>
@@ -141,8 +149,6 @@
       </div>
 
     </div>
-
-    
         </div>
       </div>
     </div>
