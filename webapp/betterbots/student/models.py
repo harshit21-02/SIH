@@ -6,10 +6,11 @@ from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import ImageField
-
+from django.contrib.auth.models import User 
 # Create your models here.
 
 class studata(models.Model):
+    # user=models.OneToOneField(User, on_delete=models.CASCADE)
     appno=models.TextField('appno',max_length=30,default='')
     fullname=models.TextField('full_name',max_length=30,default='')
     dob=models.DateField('dob',default='2001-1-1')

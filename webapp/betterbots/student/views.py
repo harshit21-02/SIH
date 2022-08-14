@@ -120,10 +120,10 @@ def result(request):
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
             login(request, user)
-            data1=dict()
+            posts=studata.objects.filter(username=username,password=password)
             print('LOGGED IN')
 
-            return redirect('/../student/profile')
+            return redirect('/../student/profile',posts)
         else:
             messages.info(request,'User is not registered!')
             return redirect('/../student/result')
