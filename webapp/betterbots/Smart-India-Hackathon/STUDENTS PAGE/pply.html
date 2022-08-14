@@ -1,3 +1,4 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,8 +12,16 @@
    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
+<<<<<<< HEAD
  
   <div class="container">
+=======
+  
+<div class="container">
+    <span>
+      
+    </span>
+>>>>>>> be22f8983aaab7a7f7c0dd49a838b48015a35827
     
     <header>Registration</header>
     <form action="#" method="post" enctype="multipart/form-data">
@@ -33,7 +42,7 @@
 		<div class="panel">
 			<div class="button_outer">
 				<div class="btn_upload">
-					<input type="file" id="upload_file" name="">
+					<input type="file" id="upload_file" name="image">
 					Upload Image
 				</div>
 				<div class="processing_bar"></div>
@@ -90,44 +99,54 @@
 
       <div class="input-field">
         <label>Password</label>
-        <input type="password" name = "fpassword" placeholder="Enter your password" required>
+
+        <input type="password" name = "fpass" placeholder="Enter your password" required>
+
       </div>
       
       <div class="input-field">
         <label>Confirm Password</label>
-        <input type="password" name = "spassword" placeholder="Confirm your password" required>
+
+        <input type="password" name = "spass" placeholder="Confirm your password" required>
+
       </div>
 
+      <div class="input-field">
+        <label>City</label>
 
+        <input type="number" name = "city" placeholder="Enter your City" required>
+       </div>
 
-        <div class="input-field">
-          <label>Nationality</label>
-
-            <input type="text" name = "ntly" placeholder="Enter nationality" required>
-
-          </div>
-
+        
           <div class="input-field">
             <label>State</label>
 
               <input type="text" name = "state" placeholder="Enter your state" required>
             </div>
-
             <div class="input-field">
-              <label>Pin-Code</label>
+              <label>Nationality</label>
+                <input type="text" name = "ntly" placeholder="Enter nationality" required>
+              </div>
 
-
-              <input type="number" name = "pin" placeholder="Enter your Pin Code" required>
-             </div>
+           
           
 
-          
           <button class="sumbit">
             <span class="btnText">Submit</span>
             <i class="uil uil-navigator"></i>
         </button>
+
       </div>
 
+      <div>
+        {% if messages %}
+          <br>
+          {% for message in messages %}
+          <div style="padding: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+          {% endfor %}
+          <br>
+        {% endif %}
+      </div>
 
     </div>
         </div>
@@ -184,5 +203,6 @@ var btnUpload = $("#upload_file"),
 		btnOuter.removeClass("file_uploaded");
 	});
 </script>
+
 </body>
 </html>

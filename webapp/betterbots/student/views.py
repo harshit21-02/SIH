@@ -24,36 +24,36 @@ def studenthome(request):
     return render(request, "STUDENTS PAGE\home.html")
 
 def application(request):
+    
     if request.method=="POST":
         username =  request.POST['username']
-
         fname:str = request.POST['fname']
-        # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
+<<<<<<< HEAD
+        gender:str = request.POST['gender']
+        password:str =  str(request.POST['fpass'])
+        cnfpass: str = str(request.POST['spass'])
+        city:str = request.POST['city']
+        state:str = request.POST['state']
+=======
         password:str =  str(request.POST['fpassword'])
         cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
-        adress1:str = request.POST['ad1']
-        adress2:str = request.POST['ad2']
         state:str = request.POST['state']
-        pincode:str = request.POST['pin']
-        landmark:str = request.POST['ld_mark']
+        # pincode:str = request.POST['pin']
+        city:str = request.POST['city']
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         ntly:str = request.POST['ntly']
 
 
-       
-        
-
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
-            return redirect('/application/')
+            return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
-            return redirect('/application/')
-
-
+            return redirect('/student/application')
 
         global x
         x=x+1
@@ -73,20 +73,27 @@ def application(request):
 
         myuser = User.objects.create_user(username = username, password = password)
         myuser.fullname=fname
-        # myuser.last_name=lname
-        myuser.email=mail
         myuser.dob=dob
+        myuser.email=mail
         myuser.contact=contact
+<<<<<<< HEAD
+        myuser.gender=gender
+        myuser.city = city
+        myuser.state = state
+        myuser.nationality = ntly
+        myuser.password = password
+=======
         myuser.password = password
         myuser.gender = gender
-        myuser.pincode = pincode
-        myuser.landmark = landmark
+        # myuser.pincode = pincode
+        # myuser.landmark = landmark
         myuser.state = state
-        myuser.adress1 = adress1
-        myuser.adress2 = adress2
+        # myuser.adress1 = adress1
+        # myuser.adress2 = adress2
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         myuser.is_student=True
       
-        
+
         myuser.application_no=appno
         if len(request.FILES)!=0:
             myuser.image=request.FILES['image']
@@ -94,21 +101,27 @@ def application(request):
         myuser.save()
 
         center:str=(str)('to be assigned')
-        
+        # sdata = studata.objects.create_user(username = username, password = password)
         sdata=studata()
         sdata.appno=appno
         sdata.fullname=fname
-        sdata.email=mail
         sdata.dob=dob
+        sdata.email=mail
         sdata.contact=contact
-        sdata.password = password
         sdata.gender = gender
-        sdata.pincode = pincode
-        sdata.landmark = landmark
+<<<<<<< HEAD
+        sdata.city = city
         sdata.state = state
-        sdata.adress1 = adress1
-        sdata.adress2 = adress2
+        sdata.password = password
+=======
+        # sdatax.pincode = pincode
+        # sdata.landmark = landmark
+        sdata.state = state
+        # sdata.adress1 = adress1
+        # sdata.adress2 = adress2
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         sdata.center=center
+
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
         sdata.save()
@@ -117,40 +130,43 @@ def application(request):
 
 def result(request):
     msg = None
+    
     if request.method=="POST":
         username =  request.POST['username']
         password =  request.POST['password']
-        print(username)
         # password=str(password) 
         # username=str(username)
         user = authenticate(request,username=username, password=password)
         if user is not None:
             if user.is_student==False:
-                print("UNAUTHORIZED")
-                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is UNAUTHORIZED!')
+                return redirect('/../student/result')
             login(request, user)
             data1=dict()
             print('LOGGED IN')
 
             return redirect('/../student/profile')
         else:
-            msg = 'invalid credentials'
-            print(username)
-            return HttpResponse("<br><br><center><H1>Invalid Credentials</h1></center>")
+            messages.info(request,'User is not registered!')
+            return redirect('/../student/result')
             
     return render(request, "STUDENTS PAGE\index.html")
 
 def logout1(request):
     logout(request)
-    return redirect('/student/')
-
+    messages.info(request,'Successfully logged out!')
+    return redirect('/../student/result')
 
 def profile(request):
     if request.user.is_authenticated:
-        print(request.user.image)
         return render(request, "STUDENTS PAGE\iform.html")
     else:
-        return HttpResponse("<br><br><center><H1>Login First</h1></center>")
+        msg = 'Unauthorized'
+        print(msg)
+        messages.info(request,'UNAUTHORIZED!')
+        return redirect('/../student/result')
 
 
 # dict = {'Name':[],'Contact':[]}
