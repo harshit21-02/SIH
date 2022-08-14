@@ -36,10 +36,6 @@ def application(request):
         cnfpass: str = str(request.POST['spass'])
         city:str = request.POST['city']
         state:str = request.POST['state']
-<<<<<<< HEAD
-
-=======
->>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         ntly:str = request.POST['ntly']
 
         if(password != cnfpass):
@@ -75,19 +71,11 @@ def application(request):
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
-<<<<<<< HEAD
-
-=======
->>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
         myuser.nationality = ntly
         myuser.password = password
-<<<<<<< HEAD
-=======
-
->>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
         myuser.is_student=True
       
 
@@ -109,13 +97,9 @@ def application(request):
         sdata.gender = gender
         sdata.city = city
         sdata.state = state
-<<<<<<< HEAD
-        sdata.password = password
-=======
-        sdata.nationality = ntly
-        # sdata.password = password
->>>>>>> ab9877c7146b6d936710ce3f08171cc3af07428f
 
+        sdata.nationality = ntly
+        
         sdata.center=center
 
         if len(request.FILES)!=0:
