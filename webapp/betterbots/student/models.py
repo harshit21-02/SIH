@@ -6,7 +6,11 @@ from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import ImageField
+<<<<<<< HEAD
 from django.contrib.auth.models import User 
+=======
+from django.contrib.auth.models import User
+>>>>>>> 83b2bbaf501549e8acd07118fcb1e58419133c37
 # Create your models here.
 
 class studata(models.Model):

@@ -12,7 +12,7 @@ from django.contrib import messages
 from student.models import studata
 from django import forms
 from django.contrib.auth.decorators import login_required
-
+import uuid
 User = get_user_model()
 
 # Create your views here.
@@ -49,11 +49,12 @@ def application(request):
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
         
-
-        global x
-        x=x+1
+        id=uuid.uuid1()
+        i=str(id.node)
+        # global x
+        # x=x+1
         cno="052"
-        appno="2022"+cno+str(x)
+        appno="2022"+cno+i[0:6]
         
         msg=None
         password=str(password)
@@ -71,6 +72,7 @@ def application(request):
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
+
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
@@ -97,6 +99,9 @@ def application(request):
         sdata.gender = gender
         sdata.city = city
         sdata.state = state
+
+        sdata.password = password
+
 
         sdata.nationality = ntly
         
