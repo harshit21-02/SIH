@@ -28,16 +28,14 @@ def application(request):
     if request.method=="POST":
         username =  request.POST['username']
         fname:str = request.POST['fname']
-        # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
-        password:str =  str(request.POST['fpassword'])
-        cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
-        state:str = request.POST['state']
-        # pincode:str = request.POST['pin']
+        password:str =  str(request.POST['fpass'])
+        cnfpass: str = str(request.POST['spass'])
         city:str = request.POST['city']
+        state:str = request.POST['state']
         ntly:str = request.POST['ntly']
 
 
@@ -66,20 +64,17 @@ def application(request):
 
         myuser = User.objects.create_user(username = username, password = password)
         myuser.fullname=fname
-        # myuser.last_name=lname
-        myuser.email=mail
         myuser.dob=dob
+        myuser.email=mail
         myuser.contact=contact
-        myuser.password = password
-        myuser.gender = gender
-        # myuser.pincode = pincode
-        # myuser.landmark = landmark
+        myuser.gender=gender
+        myuser.city = city
         myuser.state = state
-        # myuser.adress1 = adress1
-        # myuser.adress2 = adress2
+        myuser.nationality = ntly
+        myuser.password = password
         myuser.is_student=True
       
-        
+
         myuser.application_no=appno
         if len(request.FILES)!=0:
             myuser.image=request.FILES['image']
@@ -87,20 +82,17 @@ def application(request):
         myuser.save()
 
         center:str=(str)('to be assigned')
-        sdata = studata.objects.create_user(username = username, password = password)
-        # sdata=studata()
+        # sdata = studata.objects.create_user(username = username, password = password)
+        sdata=studata()
         sdata.appno=appno
         sdata.fullname=fname
-        sdata.email=mail
         sdata.dob=dob
+        sdata.email=mail
         sdata.contact=contact
-        # sdata.password = password
         sdata.gender = gender
-        # sdatax.pincode = pincode
-        # sdata.landmark = landmark
+        sdata.city = city
         sdata.state = state
-        # sdata.adress1 = adress1
-        # sdata.adress2 = adress2
+        sdata.password = password
         sdata.center=center
 
         if len(request.FILES)!=0:
