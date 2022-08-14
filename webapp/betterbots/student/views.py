@@ -12,7 +12,7 @@ from django.contrib import messages
 from student.models import studata
 from django import forms
 from django.contrib.auth.decorators import login_required
-
+import uuid
 User = get_user_model()
 
 # Create your views here.
@@ -36,21 +36,25 @@ def application(request):
         cnfpass: str = str(request.POST['spass'])
         city:str = request.POST['city']
         state:str = request.POST['state']
-
         ntly:str = request.POST['ntly']
 
-
+        if(password != cnfpass):
+            messages.error(request, 'Password and Confirm password are not same!')
+            return redirect('/student/application')
+        
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
             return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
-
-        global x
-        x=x+1
+        
+        id=uuid.uuid1()
+        i=str(id.node)
+        # global x
+        # x=x+1
         cno="052"
-        appno="2022"+cno+str(x)
+        appno="2022"+cno+i[0:6]
         
         msg=None
         password=str(password)
@@ -88,6 +92,7 @@ def application(request):
         # sdata = studata.objects.create_user(username = username, password = password)
         sdata=studata()
         sdata.appno=appno
+        sdata.username = username
         sdata.fullname=fname
         sdata.dob=dob
         sdata.email=mail
@@ -96,6 +101,7 @@ def application(request):
         sdata.city = city
         sdata.state = state
         sdata.password = password
+
 
         sdata.center=center
 
