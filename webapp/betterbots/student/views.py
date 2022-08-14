@@ -31,11 +31,20 @@ def application(request):
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
+<<<<<<< HEAD
         gender:str = request.POST['gender']
         password:str =  str(request.POST['fpass'])
         cnfpass: str = str(request.POST['spass'])
         city:str = request.POST['city']
         state:str = request.POST['state']
+=======
+        password:str =  str(request.POST['fpassword'])
+        cnfpass: str = str(request.POST['spassword'])
+        gender:str = request.POST['gender']
+        state:str = request.POST['state']
+        # pincode:str = request.POST['pin']
+        city:str = request.POST['city']
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         ntly:str = request.POST['ntly']
 
 
@@ -67,11 +76,21 @@ def application(request):
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
+<<<<<<< HEAD
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
         myuser.nationality = ntly
         myuser.password = password
+=======
+        myuser.password = password
+        myuser.gender = gender
+        # myuser.pincode = pincode
+        # myuser.landmark = landmark
+        myuser.state = state
+        # myuser.adress1 = adress1
+        # myuser.adress2 = adress2
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         myuser.is_student=True
       
 
@@ -90,9 +109,17 @@ def application(request):
         sdata.email=mail
         sdata.contact=contact
         sdata.gender = gender
+<<<<<<< HEAD
         sdata.city = city
         sdata.state = state
         sdata.password = password
+=======
+        # sdatax.pincode = pincode
+        # sdata.landmark = landmark
+        sdata.state = state
+        # sdata.adress1 = adress1
+        # sdata.adress2 = adress2
+>>>>>>> ec0d829a56670b0cc3d06ff7467dd23caa27b82d
         sdata.center=center
 
         if len(request.FILES)!=0:
