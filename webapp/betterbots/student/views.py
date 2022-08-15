@@ -129,10 +129,10 @@ def result(request):
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
             login(request, user)
-            post=studata.objects.get(username=username)
+            post=studata.objects.get(username=username) 
             
             # posts={
-            #     'username': post.username,
+            #     'username': post.username,    
             #     'fullname': post.fullname,
             #     'email': post.email,
             #     'contact': post.contact,

@@ -5,17 +5,8 @@ import os
 import pandas as pd
 import mysql.connector
 from pathlib import Path
-mydb = mysql.connector.connect(
-    host = 'localhost',
-    user = 'root',
-    password = '1234',
-    database = 'authenticate'
-)
+from models import studata
 
-mycursor = mydb.cursor()
-mycursor.execute('SELECT image FROM student_studata')
-myresult = mycursor.fetchall()
-os.chdir('static/Test')
 def video_reader():
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     detector = cv2.QRCodeDetector()
