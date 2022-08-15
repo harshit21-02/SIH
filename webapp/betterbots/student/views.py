@@ -12,7 +12,7 @@ from django.contrib import messages
 from student.models import studata
 from django import forms
 from django.contrib.auth.decorators import login_required
-
+import uuid
 User = get_user_model()
 
 # Create your views here.
@@ -49,11 +49,12 @@ def application(request):
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
         
-
-        global x
-        x=x+1
+        id=uuid.uuid1()
+        i=str(id.node)
+        # global x
+        # x=x+1
         cno="052"
-        appno="2022"+cno+str(x)
+        appno="2022"+cno+i[0:6]
         
         msg=None
         password=str(password)
@@ -66,17 +67,17 @@ def application(request):
 
             # return redirect('/../student/application/')
 
-        myuser = User.objects.create_user(username = username, password = password)
+        myuser = User.objects.create_user(username = username,password=password)
         myuser.fullname=fname
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
+
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
         myuser.nationality = ntly
-        myuser.password = password
-
+        myuser.cpassword = password
         myuser.is_student=True
       
 
@@ -98,9 +99,12 @@ def application(request):
         sdata.gender = gender
         sdata.city = city
         sdata.state = state
-        sdata.nationality = ntly
-        # sdata.password = password
 
+        sdata.password = password
+
+
+        sdata.nationality = ntly
+        
         sdata.center=center
 
         if len(request.FILES)!=0:
@@ -125,10 +129,18 @@ def result(request):
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
             login(request, user)
-            data1=dict()
-            print('LOGGED IN')
+            post=studata.objects.get(username=username)
+            
+            # posts={
+            #     'username': post.username,
+            #     'fullname': post.fullname,
+            #     'email': post.email,
+            #     'contact': post.contact,
+            #     'gender': post.gender,
+            # }
+            # print(posts)
 
-            return redirect('/../student/profile')
+            return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
         else:
             messages.info(request,'User is not registered!')
             return redirect('/../student/result')

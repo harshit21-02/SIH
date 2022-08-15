@@ -11,7 +11,7 @@ class User(AbstractUser):
     email=models.EmailField('email',max_length=30,default='')
     contact=models.TextField('contact',  default='')
     gender = models.TextField('gender', default = '')
-    password=models.TextField('fpass', default='')
+    cpassword=models.TextField('fpass', default='')
     city=models.TextField('city', default = '')
     state=models.TextField('state', default='')
     nationality = models.TextField('ntly', default = '')
