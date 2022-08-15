@@ -18,52 +18,52 @@
         <div class="row jumbotron">
             <tr>
                 <label for="email"><pre>  </pre></label>
-                <td><div style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;">{{user.image}}</div></td>
+                <td><img src="{{posts.image.url}}" style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;"></td>
                 </tr>
             <div class="col-sm-6 form-group">
                 <label for="name-f">Full Name</label>
-                <div class="form-control" name="fname" id="name-f">{{user.first_name}}</div>
+                <div class="form-control" name="fname" id="name-f">{{posts.fullname}}</div>
             </div>
             
             <div class="col-sm-6 form-group">
                 <label for="email">E-mail</label>
-                <div class="form-control" name="email" id="email">{{user.email}}</div>
+                <div class="form-control" name="email" id="email">{{posts.email}}</div>
             </div>
             
             <div class="col-sm-6 form-group">
                 <label for="Application">Username</label>
-                <div class="form-control" name="Application" id="Application">{{user.username}}</div>
+                <div class="form-control" name="Application" id="Application">{{posts.username}}</div>
             </div>
 
             <div class="col-sm-6 form-group">
                 <label for="center">Center</label>
-                <div class="form-control" name="center" id="email">{{user.centre}}</div>
+                <div class="form-control" name="center" id="email">{{posts.center}}</div>
             </div>
 
             <div class="col-sm-2 form-group">
                 <label for="City">City</label>
-                <div class="form-control" name="City" id="City" ></div>
+                <div class="form-control" name="City" id="City" >{{posts.city}}</div>
             </div>
             <div class="col-sm-2 form-group">
                 <label for="State">State</label>
-                <div class="form-control" name="State" id="State">{{user.state}}</div>
+                <div class="form-control" name="State" id="State">{{posts.state}}</div>
             </div>
            
             <div class="col-sm-6 form-group">
                 <label for="country">Country</label>
-                <div class="form-control" name="country" id="country">{{user.country}}</div>
+                <div class="form-control" name="country" id="country">{{posts.nationality}}</div>
             </div>
             <div class="col-sm-6 form-group">
                 <label for="Date of Birth">Date of Birth</label>
-                <div class="form-control" name="Date" id="dob">{{user.dob}}</div>
+                <div class="form-control" name="Date" id="dob">{{posts.dob}}</div>
             </div>
             <div class="col-sm-6 form-group">
                 <label for="Gender">Gender</label>
-                <div class="form-control" name="Gender" id="gender" >{{user.gender}}</div>
+                <div class="form-control" name="Gender" id="gender" >{{posts.gender}}</div>
             </div>
             <div class="col-sm-6 form-group">
                 <label for="tel">Phone No.</label>
-                <div name="phone" class="form-control" id="tel">{{user.contact}}</div>
+                <div name="phone" class="form-control" id="tel">{{posts.contact}}</div>
             </div>
         </div>
         <a>
