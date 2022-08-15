@@ -126,11 +126,21 @@ def result(request):
                 print(msg)
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
-            login(request, user)
-            post=studata.objects.get(username=username)
+            
+             
+            try:
+                post=studata.objects.get(username=username)
+                login(request, user)
+                return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
+            except studata.DoesNotExist:
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is deleted!')
+                return redirect('/../student/result')
+                
             
             # posts={
-            #     'username': post.username,
+            #     'username': post.username,    
             #     'fullname': post.fullname,
             #     'email': post.email,
             #     'contact': post.contact,
