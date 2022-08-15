@@ -22,8 +22,8 @@ class studata(models.Model):
     city=models.TextField('city', default = '')
     state=models.TextField('state', default='')
     nationality = models.TextField('ntly', default = '')
-
     image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
+    aid = models.TextField('aid', default = '')
 
     
     def __str__(self):

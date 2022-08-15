@@ -57,9 +57,10 @@ def logo(request):
 
 
 def video_reader(request):
-    # print("HELLO WORLD")
+    print("HELLO WORLD")
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     detector = cv2.QRCodeDetector()
+    data=""
     while True:
         _, img = cam.read()
         cv2.imshow("img", img)
@@ -71,12 +72,11 @@ def video_reader(request):
             break
     cam.release()
     cv2.destroyAllWindows()
-    if data:
-        return redirect('/../invigilator/details',data=data)
+    if data!="":
+        return HttpResponse(data)
 
     return redirect('/../invigilator/scan')
     
-
 def details(data):
     print(data)
     return HttpResponse(data)    
