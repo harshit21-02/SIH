@@ -18,6 +18,8 @@ import qrcode
 import PIL.Image
 import cv2
 
+dataid={}
+
 def evlogin(request):
     if request.method=="POST":
         username: str =  request.POST['Center_ID']
@@ -85,14 +87,28 @@ def marks(request):
     try:
         posts=studata.objects.get(answerid=data)
         print(posts.marks)
-        posts.marks=50
-        print(posts.marks)
-        posts.save()
-        return HttpResponse(posts.username)
+        global dataid
+        dataid['aid']=data;
+        return redirect('/../evaluator/upload')
     except studata.DoesNotExist:
         msg = 'INVALID QRCODE'
         print(msg)
         messages.info(request,'INVALID QRCODE')
         return redirect('/../evaluator/scanqr')
     
-
+def upload(request):
+    if request.method=="POST":
+        markso =  request.POST['markso']
+        remarks =  request.POST['remarks']
+        posts=studata.objects.get(answerid=dataid['aid'])
+        posts.marks=markso
+        posts.save()
+        msg = 'MARKS UPDATED'
+        print(msg)
+        messages.info(request,'MARKS UPDATED')
+        return redirect('/../evaluator/scanqr')
+    
+    msg = 'Upload marks'
+    print(msg)
+    messages.info(request,'Upload marks')
+    return render(request, "EVALUATOR PAGE\input.html")

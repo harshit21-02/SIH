@@ -7,6 +7,7 @@ import mysql.connector
 from pathlib import Path
 from models import studata
 
+
 def video_reader():
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     detector = cv2.QRCodeDetector()

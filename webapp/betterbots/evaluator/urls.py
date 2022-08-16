@@ -28,5 +28,6 @@ urlpatterns = [
     path('logev', views.logev, name="logev"),
     path('scanqr',views.scanqr, name="scanqr"),
     path('marks', views.marks,name="marks"),
+    path('upload', views.upload,name="upload"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

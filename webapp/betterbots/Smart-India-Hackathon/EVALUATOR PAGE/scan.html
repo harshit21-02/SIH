@@ -4,6 +4,15 @@
     <link rel="stylesheet" type="text/css" href={% static '/EVALUVATOR PAGE/scan.css' %}>  
 </head>
 <body>
+
+  {% if messages %}
+  
+    {% for message in messages %}
+    <div style="padding: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+ 
+  {% endif %}
+  
     <div class="login-box">
         <h2>Scan QR Code</h2>
         <form action="marks" method="POST"> 
