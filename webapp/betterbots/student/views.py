@@ -72,7 +72,6 @@ def application(request):
         myuser.dob=dob
         myuser.email=mail
         myuser.contact=contact
-
         myuser.gender=gender
         myuser.city = city
         myuser.state = state
@@ -88,7 +87,6 @@ def application(request):
         myuser.save()
 
         center:str=(str)('to be assigned')
-        # sdata = studata.objects.create_user(username = username, password = password)
         sdata=studata()
         sdata.appno=appno
         sdata.username = username
@@ -99,7 +97,7 @@ def application(request):
         sdata.gender = gender
         sdata.city = city
         sdata.state = state
-
+        sdata.answerid=id
         sdata.password = password
 
 
