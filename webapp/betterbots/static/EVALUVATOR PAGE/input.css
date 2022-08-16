@@ -34,15 +34,15 @@ html {
   
   .login-box .user-box input {
     width: 100%;
-    padding: 0px;
+    padding: 10px 0;
     font-size: 16px;
     color: #fff;
-    margin-bottom: 0px;
+    margin-bottom: 30px;
     border: none;
-    border-bottom: 1px solid #312424;
+    border-bottom: 1px solid #fff;
     outline: none;
-    background: #34292900;
-}
+    background: transparent;
+  }
   .login-box .user-box label {
     position: absolute;
     top:0;
@@ -58,7 +58,7 @@ html {
   .login-box .user-box input:valid ~ label {
     top: -20px;
     left: 0;
-    color: #03e9f4;
+    color: #243b55;
     font-size: 12px;
   }
   
@@ -66,19 +66,18 @@ html {
     position: relative;
     display: inline-block;
     padding: 10px 20px;
-    color: #03e9f4;
+    color: #243b55;
     font-size: 16px;
     text-decoration: none;
     text-transform: uppercase;
     overflow: hidden;
     transition: .5s;
-    margin-top: 35px;
-    margin-left: 79px;
-    letter-spacing: 4px;
-}
+    margin-top: 40px;
+    letter-spacing: 4px
+  }
   
   .login-box a:hover {
-    background: #03e9f4;
+    background: #243b55;
     color: #fff;
     border-radius: 5px;
     box-shadow: 0 0 5px #03e9f4,
@@ -97,7 +96,7 @@ html {
     left: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, transparent, #03e9f4);
+    background: linear-gradient(90deg, transparent, #243b55);
     animation: btn-anim1 1s linear infinite;
   }
   
@@ -115,7 +114,7 @@ html {
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg, transparent, #03e9f4);
+    background: linear-gradient(180deg, transparent, #243b55);
     animation: btn-anim2 1s linear infinite;
     animation-delay: .25s
   }
@@ -134,7 +133,7 @@ html {
     right: -100%;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg, transparent, #03e9f4);
+    background: linear-gradient(270deg, transparent, #243b55);
     animation: btn-anim3 1s linear infinite;
     animation-delay: .5s
   }
@@ -153,7 +152,7 @@ html {
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg, transparent, #03e9f4);
+    background: linear-gradient(360deg, transparent, #243b55);
     animation: btn-anim4 1s linear infinite;
     animation-delay: .75s
   }
@@ -165,4 +164,17 @@ html {
     50%,100% {
       bottom: 100%;
     }
+  }
+  
+  input[type=submit] {
+    /* background: rgba(0,0,0,.6); */
+    background: #09233e1c;
+    /* border-color: linear-gradient(#141e30, #243b55); */
+    border: none;
+    color: white;
+    padding: 5px 12px;
+    text-decoration: none;
+    font-size: 16px;
+    cursor: pointer;
+     z-index: -1;
   }

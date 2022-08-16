@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <link rel="stylesheet" href="../static/INVIGILATOR PAGE/scan.css">
+    <link rel="stylesheet" href="../../static/INVIGILATOR PAGE/scan.css">
 </head>
 <body>
     <div class="login-box">
@@ -19,7 +19,14 @@
 
         <form action="logo" method="POST">
           {% csrf_token %}
+          <div class="user-box">
+            <a href="#">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
           <input type="submit"  value="LOGOUT">
+            </a>
       </form>
       
       </div>
