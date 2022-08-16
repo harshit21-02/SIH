@@ -6,7 +6,10 @@ from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import ImageField
+
+
 from django.contrib.auth.models import User 
+
 
 # Create your models here.
 
@@ -22,8 +25,10 @@ class studata(models.Model):
     city=models.TextField('city', default = '')
     state=models.TextField('state', default='')
     nationality = models.TextField('ntly', default = '')
-
+    answerid = models.TextField('answerid',default = '')
+    marks = models.TextField('marks', max_length = 3, default = '')
     image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
+
 
     
     def __str__(self):

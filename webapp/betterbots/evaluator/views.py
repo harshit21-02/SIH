@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from re import X
 import re
+# from socket import AI_DEFAULT
 from xml.dom import ValidationErr
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -12,7 +13,10 @@ from django.contrib import messages
 from student.models import studata
 from django import forms
 from django.contrib.auth.decorators import login_required
-
+from student.models import studata
+import qrcode 
+import PIL.Image
+import cv2
 
 def evlogin(request):
     if request.method=="POST":
@@ -27,8 +31,10 @@ def evlogin(request):
         if user is not None:
             print("yes")
             if user.is_evaluator==False:
-                print("UNAUTHORIZED")
-                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
+                msg = 'UNAUTHORIZED'
+                print(msg)
+                messages.info(request,'UNAUTHORIZED')
+                return redirect('/../evaluator/')
             login(request, user)
             return redirect('/../evaluator/scanqr')
         else:
@@ -53,3 +59,36 @@ def logev(request):
     logout(request)
     messages.info(request,'Successfully logged out!')
     return redirect('/../evaluator/')
+
+
+def marks(request):
+    print("HELLO WORLD")
+    cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+    detector = cv2.QRCodeDetector()
+    data=""
+    while True:
+        _, img = cam.read()
+        cv2.imshow("img", img)
+        data, bbox, _ = detector.detectAndDecode(img)
+        if data:
+            print("QR Code detected-->", data)
+            break
+        if cv2.waitKey(1) == ord("q"):
+            break
+    cam.release()
+    cv2.destroyAllWindows()
+    if data=="":
+        msg = 'INVALID QRCODE'
+        print(msg)
+        messages.info(request,'INVALID QRCODE')
+        return redirect('/../evaluator/scanqr')
+    try:
+        posts=studata.objects.get(aid=data)
+        return HttpResponse(posts.username)
+    except studata.DoesNotExist:
+        msg = 'INVALID QRCODE'
+        print(msg)
+        messages.info(request,'INVALID QRCODE')
+        return redirect('/../evaluator/scanqr')
+    
+
