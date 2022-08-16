@@ -83,7 +83,11 @@ def marks(request):
         messages.info(request,'INVALID QRCODE')
         return redirect('/../evaluator/scanqr')
     try:
-        posts=studata.objects.get(aid=data)
+        posts=studata.objects.get(answerid=data)
+        print(posts.marks)
+        posts.marks=50
+        print(posts.marks)
+        posts.save()
         return HttpResponse(posts.username)
     except studata.DoesNotExist:
         msg = 'INVALID QRCODE'
