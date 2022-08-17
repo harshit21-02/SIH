@@ -1,208 +1,145 @@
 *{
-  box-sizing: border-box;
-}
-.header{
-    background-color: #add8e6;
-    padding-bottom: 10px;
-    text-align: center;
-    width: 100%;
-    padding-top: 5px;
-    margin: 0;
-}
-.header img {
-    float:left;
-    width: 7%;
-    height: 7%;
-}
-.header h1,h2{
-    display: block;
-    width: 100%;
-    color:rgb(2, 51, 75)
-}
-.header h2{
-    padding:0px;
-    margin-bottom:6px;
-    padding-right:200px;
-}
-.header h1{
-    margin-top:7px;
-    padding-right:200px;
-    margin-bottom: 2px;
-}
-nav a{
-    text-decoration: none;
-    color: rgb(248, 248, 248);
-    display: inline-block;
-    background-color: darkturquoise;
-    width: 150px;
-    text-align: center;
-}
-.topnav {
-    width: 100%;
-    overflow: hidden;
-    background-color: darkturquoise;
-  }
-.topnav a {
-    float: right;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 3px 5px;
-    text-decoration: none;
-    font-size: 17px;
-  }
-  
-.topnav a:hover {
-    background-color: #ddd;
-    color: black;
-  }
-
-  .body_image img{
-    width: 100%;
-    height: 300px;
-  }
-
-  footer {
-    display: block;
-    width: 100%;
-    background-color:  darkturquoise;
-    color: rgb(9, 74, 71);
-    text-align: center;
-    left: 0;
-    bottom: 0;
-    font-family: Helvetica, sans-serif;
-  }
-
-
-
-.details{
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.team_details{
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-
-.column1{
-  
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 10px;
-}
-
-.column2{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 10px;
-}
-
-.column3{
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  padding-bottom: 10px;
-}
-
-.photo{
-    border-radius: 50%;
-    height: 20%;
-    width: 20%;
-}
-
-.member_name{
-  padding-top: 20px;
-  padding-left: 21px;
-  color:rgb(2, 51, 75)
-}
-
-.member_name:hover{
-  cursor:pointer;
-}
-
-.names{
-  color:rgb(2, 51, 75)
-}
-
-/* footer h1,h3{
-    padding: 0px 50px;
-} */
-body{
-  
-    opacity:1.5;
-    background-size: 100% 300%;
-    padding: 0px 0px 0px 0px;
-    margin:0;
-    background-color:  darkturquoise;
-}
-
-* {
     box-sizing: border-box;
-  }
-  
-  /* body {
-    font-family: Arial, Helvetica, sans-serif;
-  }
-   */
-  /* Float four columns side by side */
-  .column {
-    float: left;
-    width: 16.5%;
-    padding: 0 10px 10px;
-  }
-  
-  
-  /* Remove extra left and right margins, due to padding in columns */
-  .row {margin: 0 -5px;}
-  
-  /* Clear floats after the columns */
-  .row:after {
-    content: "";
-    display: table;
-    clear: both;
-  }
-  
-  /* Style the counter cards */
-  
-  .cards{
+}
+.top_container{
+    background-color: #a1daf1;
+    width: 100%;
+    height: 5%;
     display: flex;
     flex-direction: row;
-    height: 33.3%;
-    width: 50%;
-    padding: 10px;
-    background-color: #19cece;
+}
 
-    --b: 0.1em;   /* the thickness of the line */
-     --c: #000000; /* the color */
-  
-    color: rgba(0, 0, 0, 0);
-    padding-block: var(--b);
-    background: 
-      linear-gradient(var(--c) 50%,#000 0) 0% calc(100% - var(--_p,0%))/100% 200%,
-      linear-gradient(var(--c) 0 0) 0% var(--_p,0%)/var(--_p,0%) var(--b) no-repeat;
-    -webkit-background-clip: text,padding-box;
-        background-clip: text,padding-box;
-    transition: .3s var(--_s,0s) linear,background-size .3s calc(.3s - var(--_s,0s));
-  }
+.left_top{
+    width: 25%;
+    height: 100%;
+}
 
-  .cards:hover{
-    --_p: 100%;
-    --_s: .3s;
-  }
+.logo{
+    width: 45%;
+    height: 100%;
+}
 
-  
-  
-  /* Responsive columns - one column layout (vertical) on small screens */
-  /* @media screen and (max-width: 500px) {
-    .column {
-      width: 100%;
-      display: block;
-      margin-bottom: 20px;
-    }
-  } */
+.right_top{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.project_desc{
+    align-items: center;
+    height: 5%;
+}
+.project_desc h1{
+    display: block;
+    margin-top: 0.67em;
+    font-weight: bold;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 50px;
+    padding-left: 230px;
+    
+}
+
+.project_com{
+    align-items:flex-start;
+    padding-left: 10px;
+}
+
+.project_com h2{
+    display: block;
+    margin-top: 0;
+    margin-left: 0;
+    
+}
+
+.master_container{
+    display: flex;
+    flex-direction: column;
+    height: 950px;
+    justify-content: space-between;
+    background-image: url("https://drive.google.com/uc?export=download&id=19OCr413z9T_2gyQpZlVQwcpA1jrZrW7m");
+    background-size: cover;
+    text-align: center;
+}
+
+.container{
+    height: 100%;
+    width: 90%;
+}
+
+.btn-grad{
+    text-transform: uppercase;
+    color: rgba(244, 238, 238, 0.906);
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 20px;
+    width: 250px;
+}
+
+.btn-grad b{
+    display: block;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 30px;
+}
+
+.student_button{
+    width: 100%;
+    height: 10%;
+    padding-top: 50px;
+    padding-left: 95px;
+}
+
+.invigilator_button{
+    width: 100%;
+    height: 10%;
+    padding-top: 50px;
+    padding-left: 95px;
+}
+
+.examiner_button{
+    width: 100%;
+    height: 10%;
+    padding-top: 50px;
+    padding-left: 95px;
+}
+
+.blue_line{
+    width: 93%;
+    height: 4px;
+    background-color: #4691ea;
+    margin-left: 111px;
+    margin-top: 70px;
+}
+
+.team_name{
+    align-items: center;
+    height: 10%;
+    padding-top: 110px;
+    padding-left: 98px;
+}
+
+.team_name h2{
+    text-transform: uppercase;
+    color: rgba(244, 238, 238, 0.906);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
+    border-radius: 10px;
+    display: inline-block;
+    font-size: 20px;
+    width: 250px;
+}
+
+.team_members{
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    height: 20%;
+    margin-left: 200px;
+    margin-top: 100px
+}
+
+.harshit{
+    width: 10%;
+    height: 10%;
+}
+
