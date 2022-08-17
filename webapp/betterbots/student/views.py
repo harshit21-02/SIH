@@ -12,7 +12,7 @@ from django.contrib import messages
 from student.models import studata
 from django import forms
 from django.contrib.auth.decorators import login_required
-
+import uuid
 User = get_user_model()
 
 # Create your views here.
@@ -24,41 +24,37 @@ def studenthome(request):
     return render(request, "STUDENTS PAGE\home.html")
 
 def application(request):
+    
     if request.method=="POST":
         username =  request.POST['username']
-
         fname:str = request.POST['fname']
-        # lname:str = request.POST['lname']
         dob: str =  request.POST['dob']
         mail :str = request.POST['mail']
         contact  =  request.POST['contact']
-        password:str =  str(request.POST['fpassword'])
-        cnfpass: str = str(request.POST['spassword'])
         gender:str = request.POST['gender']
-        adress1:str = request.POST['ad1']
-        adress2:str = request.POST['ad2']
+        password:str =  str(request.POST['fpass'])
+        cnfpass: str = str(request.POST['spass'])
+        city:str = request.POST['city']
         state:str = request.POST['state']
-        pincode:str = request.POST['pin']
-        landmark:str = request.POST['ld_mark']
         ntly:str = request.POST['ntly']
 
-
-       
+        if(password != cnfpass):
+            messages.error(request, 'Password and Confirm password are not same!')
+            return redirect('/student/application')
         
-
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
-            return redirect('/application/')
+            return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
-            return redirect('/application/')
-
-
-
-        global x
-        x=x+1
+            return redirect('/student/application')
+        
+        id=uuid.uuid1()
+        i=str(id.node)
+        # global x
+        # x=x+1
         cno="052"
-        appno="2022"+cno+str(x)
+        appno="2022"+cno+i[0:6]
         
         msg=None
         password=str(password)
@@ -71,22 +67,19 @@ def application(request):
 
             # return redirect('/../student/application/')
 
-        myuser = User.objects.create_user(username = username, password = password)
+        myuser = User.objects.create_user(username = username,password=password)
         myuser.fullname=fname
-        # myuser.last_name=lname
-        myuser.email=mail
         myuser.dob=dob
+        myuser.email=mail
         myuser.contact=contact
-        myuser.password = password
-        myuser.gender = gender
-        myuser.pincode = pincode
-        myuser.landmark = landmark
+        myuser.gender=gender
+        myuser.city = city
         myuser.state = state
-        myuser.adress1 = adress1
-        myuser.adress2 = adress2
+        myuser.nationality = ntly
+        myuser.cpassword = password
         myuser.is_student=True
       
-        
+
         myuser.application_no=appno
         if len(request.FILES)!=0:
             myuser.image=request.FILES['image']
@@ -94,21 +87,24 @@ def application(request):
         myuser.save()
 
         center:str=(str)('to be assigned')
-        
         sdata=studata()
         sdata.appno=appno
+        sdata.username = username
         sdata.fullname=fname
-        sdata.email=mail
         sdata.dob=dob
+        sdata.email=mail
         sdata.contact=contact
-        sdata.password = password
         sdata.gender = gender
-        sdata.pincode = pincode
-        sdata.landmark = landmark
+        sdata.city = city
         sdata.state = state
-        sdata.adress1 = adress1
-        sdata.adress2 = adress2
+        sdata.answerid=id
+        sdata.password = password
+
+
+        sdata.nationality = ntly
+        
         sdata.center=center
+
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
         sdata.save()
@@ -117,40 +113,61 @@ def application(request):
 
 def result(request):
     msg = None
+    
     if request.method=="POST":
         username =  request.POST['username']
         password =  request.POST['password']
-        print(username)
         # password=str(password) 
         # username=str(username)
         user = authenticate(request,username=username, password=password)
         if user is not None:
             if user.is_student==False:
-                print("UNAUTHORIZED")
-                return HttpResponse("<br><br><center><H1>Unauthorized</h1></center>")
-            login(request, user)
-            data1=dict()
-            print('LOGGED IN')
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is UNAUTHORIZED!')
+                return redirect('/../student/result')
+            
+             
+            try:
+                post=studata.objects.get(username=username)
+                login(request, user)
+                return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
+            except studata.DoesNotExist:
+                msg = 'Unauthorized'
+                print(msg)
+                messages.info(request,'User is deleted!')
+                return redirect('/../student/result')
+                
+            
+            # posts={
+            #     'username': post.username,    
+            #     'fullname': post.fullname,
+            #     'email': post.email,
+            #     'contact': post.contact,
+            #     'gender': post.gender,
+            # }
+            # print(posts)
 
-            return redirect('/../student/profile')
+            return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
         else:
-            msg = 'invalid credentials'
-            print(username)
-            return HttpResponse("<br><br><center><H1>Invalid Credentials</h1></center>")
+            messages.info(request,'User is not registered!')
+            return redirect('/../student/result')
             
     return render(request, "STUDENTS PAGE\index.html")
 
 def logout1(request):
     logout(request)
-    return redirect('/student/')
-
+    messages.info(request,'Successfully logged out!')
+    return redirect('/../student/result')
 
 def profile(request):
     if request.user.is_authenticated:
-        print(request.user.image)
         return render(request, "STUDENTS PAGE\iform.html")
     else:
-        return HttpResponse("<br><br><center><H1>Login First</h1></center>")
+        msg = 'Unauthorized'
+        print(msg)
+        messages.info(request,'UNAUTHORIZED!')
+        return redirect('/../student/result')
 
 
 # dict = {'Name':[],'Contact':[]}
