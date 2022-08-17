@@ -29,7 +29,7 @@ def application(request):
         username =  request.POST['username']
         fname:str = request.POST['fname']
         dob: str =  request.POST['dob']
-        mail :str = request.POST['mail']
+        mail:str = request.POST['mail']
         contact  =  request.POST['contact']
         gender:str = request.POST['gender']
         password:str =  str(request.POST['fpass'])
@@ -41,9 +41,11 @@ def application(request):
         if(password != cnfpass):
             messages.error(request, 'Password and Confirm password are not same!')
             return redirect('/student/application')
-        
         if User.objects.filter(username=username).exists():
             messages.error(request, ' Sorry! Username is already taken')
+            return redirect('/student/application')
+        if len(request.FILES)==0:
+            messages.error(request, 'Please insert an image')
             return redirect('/student/application')
         elif User.objects.filter(email=mail).exists():
             messages.error(request, ' Sorry! Email is already registered')
@@ -83,6 +85,8 @@ def application(request):
         myuser.application_no=appno
         if len(request.FILES)!=0:
             myuser.image=request.FILES['image']
+        
+            
         
         myuser.save()
 
