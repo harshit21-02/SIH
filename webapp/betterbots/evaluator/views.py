@@ -102,6 +102,7 @@ def upload(request):
         remarks =  request.POST['remarks']
         posts=studata.objects.get(answerid=dataid['aid'])
         posts.marks=markso
+        posts.remarks=remarks
         posts.save()
         msg = 'MARKS UPDATED'
         print(msg)
