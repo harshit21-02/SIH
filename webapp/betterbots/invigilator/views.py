@@ -9,6 +9,8 @@ from django.contrib import messages
 import qrcode 
 import PIL.Image
 import cv2
+from deepface import DeepFace
+import os
 
 # Create your views here.
 
@@ -72,6 +74,25 @@ def video_reader(request):
             break
     cam.release()
     cv2.destroyAllWindows()
+    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+    while True:
+        _, img = cam.read()
+        cv2.imshow("img", img)
+        if cv2.waitKey(1) == ord("s"):
+            cv2.imwrite('image.jpg', img)
+            break
+    cam.release()
+    cv2.destroyAllWindows()
+    s = 0
+    for files in os.listdir('C:\Pycharm Projects\pictures'):
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path='C:\Pycharm Projects\pictures\\' + str(files))
+        if recognition['verified'] == True:
+            print('Verified!!! for the image', files)
+            s = 1
+            break
+    if s == 0:
+        print("No Data found -_-")
     if data!="":
         return HttpResponse(data)
 
