@@ -26,7 +26,8 @@ class studata(models.Model):
     state=models.TextField('state', default='')
     nationality = models.TextField('ntly', default = '')
     answerid = models.TextField('answerid',default = '')
-    marks = models.TextField('marks', max_length = 3, default = '')
+    marks = models.IntegerField('marks', max_length = 3, default = '')
+    remarks = models.TextField('remarks', default = '')
     image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
 
 
