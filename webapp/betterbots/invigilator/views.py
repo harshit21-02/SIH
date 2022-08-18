@@ -85,10 +85,11 @@ def video_reader(request):
     cam.release()
     cv2.destroyAllWindows()
     s = 0
-    for files in os.listdir('C:\Pycharm Projects\pictures'):
-        recognition = DeepFace.verify(img1_path="image.jpg", img2_path='C:\Pycharm Projects\pictures\\' + str(files))
+    path = r"C:\Users\Prateek Pal\SIH\webapp\betterbots\media\pictures\\"
+    for file in os.listdir(path):
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=path + str(file))
         if recognition['verified'] == True:
-            print('Verified!!! for the image', files)
+            print('Verified!!! for the image', file)
             s = 1
             break
     if s == 0:
