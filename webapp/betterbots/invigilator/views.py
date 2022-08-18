@@ -9,6 +9,8 @@ from django.contrib import messages
 import qrcode 
 import PIL.Image
 import cv2
+from deepface import DeepFace
+import os
 
 # Create your views here.
 
@@ -72,11 +74,17 @@ def video_reader(request):
             break
     cam.release()
     cv2.destroyAllWindows()
+<<<<<<< HEAD
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+=======
+    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
+
+>>>>>>> aaa1d3a3a0d2d6d823ed281054efcb750381ae75
     while True:
         _, img = cam.read()
         cv2.imshow("img", img)
         if cv2.waitKey(1) == ord("s"):
+<<<<<<< HEAD
             cv2.imwrite('image.jpg' ,img)
             # df = DeepFace.verify(img_path = "E:\SIH\SIH\SIH\webapp\image.jpg", db_path = "E:/SIH/SIH/SIH/webapp/betterbots/static/STUDENTS PAGE/images")
             # print(df)
@@ -94,6 +102,22 @@ def video_reader(request):
             break
     cam.release()
     cv2.destroyAllWindows()
+=======
+            cv2.imwrite('image.jpg', img)
+            break
+    cam.release()
+    cv2.destroyAllWindows()
+    s = 0
+    path = r"C:\Users\Prateek Pal\SIH\webapp\betterbots\media\pictures\\"
+    for file in os.listdir(path):
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=path + str(file))
+        if recognition['verified'] == True:
+            print('Verified!!! for the image', file)
+            s = 1
+            break
+    if s == 0:
+        print("No Data found -_-")
+>>>>>>> aaa1d3a3a0d2d6d823ed281054efcb750381ae75
     if data!="":
         return HttpResponse(data)
 
