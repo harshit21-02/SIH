@@ -71,20 +71,18 @@ def application(request):
 
         myuser = User.objects.create_user(username = username,password=password)
         myuser.fullname=fname
-        myuser.dob=dob
+       
         myuser.email=mail
         myuser.contact=contact
         myuser.gender=gender
-        myuser.city = city
-        myuser.state = state
-        myuser.nationality = ntly
+       
         myuser.cpassword = password
         myuser.is_student=True
       
 
         myuser.application_no=appno
-        if len(request.FILES)!=0:
-            myuser.image=request.FILES['image']
+        # if len(request.FILES)!=0:
+        #     myuser.image=request.FILES['image']
         
             
         
@@ -172,8 +170,7 @@ def profile(request):
         print(msg)
         messages.info(request,'UNAUTHORIZED!')
         return redirect('/../student/result')
-
-
+        
 # dict = {'Name':[],'Contact':[]}
 # dict['name'].append()
 

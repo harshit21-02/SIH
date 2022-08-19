@@ -18,7 +18,7 @@ from django.conf import settings
 value = settings.BASE_DIR
 # Create your views here.
 
-posts={}
+post={}
 
 def inhome(request):
     msg = "fghj"
@@ -75,6 +75,7 @@ def video_reader(request):
         data, bbox, _ = detector.detectAndDecode(img)
         if data:
             print("QR Code detected-->", data)
+            post['aid']=data
             break
         if cv2.waitKey(1) == ord("q"):
             break
@@ -101,6 +102,7 @@ def video_reader(request):
             file = file.replace('.png', '')
             file = file.replace('.jpg', '')
             file = file.replace('.jpeg', '')
+            post['imgid']=file
             print('Verified!!! for the image', file)
             s = 1
             return redirect('/../invigilator/details')
@@ -113,5 +115,9 @@ def video_reader(request):
     return redirect('/../invigilator/scan')
     
 def details(request):
-    return render(request, "INVIGILATOR/finald.html")  
+    posts=studata.objects.get(username=post['imgid'])
+    posts.answerid=post['aid']
+    posts.save()
+    print(posts.username)
+    return render(request, "INVIGILATOR/finald.html",{'posts':posts})  
 
