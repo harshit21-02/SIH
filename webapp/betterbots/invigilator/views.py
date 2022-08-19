@@ -92,13 +92,15 @@ def video_reader(request):
     cam.release()
     cv2.destroyAllWindows()
     s = 0
-    path = os.path.join(os.path.dirname(value), 'betterbots','media', 'static', 'STUDENTS PAGE', 'images/')
+    path = os.getcwd() + str("\media\static\STUDENTS PAGE\images")
+    print(path)
     for file in os.listdir(path):
-        path1 = os.path.join(os.path.dirname(value), 'betterbots','media', 'static', 'STUDENTS PAGE', 'images', file)
-        # print(path1)
-        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=path1, enforce_detection=False)
+
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path,file), enforce_detection=False)
         if recognition['verified'] == True:
-            posts['impath']=path1
+            file = file.replace('.png', '')
+            file = file.replace('.jpg', '')
+            file = file.replace('.jpeg', '')
             print('Verified!!! for the image', file)
             s = 1
             return redirect('/../invigilator/details')
@@ -111,6 +113,4 @@ def video_reader(request):
     return redirect('/../invigilator/scan')
     
 def details(request):
-    post=studata.objects.get(image=posts['impath'])
-    print(post)
-    return render(request, "INVIGILATOR/finald.html",post)  
+    return render(request, "INVIGILATOR/finald.html")
