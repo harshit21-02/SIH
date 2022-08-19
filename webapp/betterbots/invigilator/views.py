@@ -1,3 +1,4 @@
+from email.mime import image
 from re import X
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -11,8 +12,13 @@ import PIL.Image
 import cv2
 from deepface import DeepFace
 import os
+from student.models import studata
 
+from django.conf import settings
+value = settings.BASE_DIR
 # Create your views here.
+
+posts={}
 
 def inhome(request):
     msg = "fghj"
@@ -74,55 +80,37 @@ def video_reader(request):
             break
     cam.release()
     cv2.destroyAllWindows()
-<<<<<<< HEAD
-    cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
-=======
-    cam = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
->>>>>>> aaa1d3a3a0d2d6d823ed281054efcb750381ae75
+    cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+
     while True:
         _, img = cam.read()
         cv2.imshow("img", img)
         if cv2.waitKey(1) == ord("s"):
-<<<<<<< HEAD
-            cv2.imwrite('image.jpg' ,img)
-            # df = DeepFace.verify(img_path = "E:\SIH\SIH\SIH\webapp\image.jpg", db_path = "E:/SIH/SIH/SIH/webapp/betterbots/static/STUDENTS PAGE/images")
-            # print(df)
-            # obj = DeepFace.analyze(img_path = "image.jpg", actions = ['age', 'gender', 'race', 'emotion'])
-            result = DeepFace.verify(img2_path=r'E:\SIH\SIH\SIH\webapp\image.jpg',img1_path=r'E:\SIH\SIH\SIH\webapp\betterbots\static\STUDENTS PAGE\images\WhatsApp_Image_2022-07-12_at_4.02.35_PM.jpeg')
-            # print(obj)
-            if result['verified']==True:
-                print('matched')
-                break
-            else:
-                print('NOT VERIFIED')
-                break
-
-        if cv2.waitKey(1) == ord("q"):
-            break
-    cam.release()
-    cv2.destroyAllWindows()
-=======
             cv2.imwrite('image.jpg', img)
             break
     cam.release()
     cv2.destroyAllWindows()
     s = 0
-    path = r"C:\Users\Prateek Pal\SIH\webapp\betterbots\media\pictures\\"
+    path = os.path.join(os.path.dirname(value), 'betterbots','media', 'static', 'STUDENTS PAGE', 'images/')
     for file in os.listdir(path):
-        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=path + str(file))
+        path1 = os.path.join(os.path.dirname(value), 'betterbots','media', 'static', 'STUDENTS PAGE', 'images', file)
+        # print(path1)
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=path1, enforce_detection=False)
         if recognition['verified'] == True:
+            posts['impath']=path1
             print('Verified!!! for the image', file)
             s = 1
-            break
+            return redirect('/../invigilator/details')
     if s == 0:
         print("No Data found -_-")
->>>>>>> aaa1d3a3a0d2d6d823ed281054efcb750381ae75
+        
     if data!="":
         return HttpResponse(data)
 
     return redirect('/../invigilator/scan')
     
-def details(data):
-    print(data)
-    return HttpResponse(data)    
+def details(request):
+    post=studata.objects.get(image=posts['impath'])
+    print(post)
+    return render(request, "INVIGILATOR/finald.html",post)  
