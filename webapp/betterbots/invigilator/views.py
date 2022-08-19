@@ -111,6 +111,4 @@ def video_reader(request):
     return redirect('/../invigilator/scan')
     
 def details(request):
-    post=studata.objects.get(image=posts['impath'])
-    print(post)
-    return render(request, "INVIGILATOR/finald.html",post)  
+    return render(request, "INVIGILATOR/finald.html")  
