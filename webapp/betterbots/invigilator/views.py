@@ -1,3 +1,4 @@
+from email.mime import image
 from re import X
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -9,8 +10,15 @@ from django.contrib import messages
 import qrcode 
 import PIL.Image
 import cv2
+from deepface import DeepFace
+import os
+from student.models import studata
 
+from django.conf import settings
+value = settings.BASE_DIR
 # Create your views here.
+
+post={}
 
 def inhome(request):
     msg = "fghj"
@@ -67,16 +75,49 @@ def video_reader(request):
         data, bbox, _ = detector.detectAndDecode(img)
         if data:
             print("QR Code detected-->", data)
+            post['aid']=data
             break
         if cv2.waitKey(1) == ord("q"):
             break
     cam.release()
     cv2.destroyAllWindows()
+
+    cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+
+    while True:
+        _, img = cam.read()
+        cv2.imshow("img", img)
+        if cv2.waitKey(1) == ord("s"):
+            cv2.imwrite('image.jpg', img)
+            break
+    cam.release()
+    cv2.destroyAllWindows()
+    s = 0
+    path = os.getcwd() + str("\media\static\STUDENTS PAGE\images")
+    print(path)
+    for file in os.listdir(path):
+
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path,file), enforce_detection=False)
+        if recognition['verified'] == True:
+            file = file.replace('.png', '')
+            file = file.replace('.jpg', '')
+            file = file.replace('.jpeg', '')
+            post['imgid']=file
+            print('Verified!!! for the image', file)
+            s = 1
+            return redirect('/../invigilator/details')
+    if s == 0:
+        print("No Data found -_-")
+        
     if data!="":
         return HttpResponse(data)
 
     return redirect('/../invigilator/scan')
     
-def details(data):
-    print(data)
-    return HttpResponse(data)    
+def details(request):
+    posts=studata.objects.get(username=post['imgid'])
+    posts.answerid=post['aid']
+    posts.save()
+    print(posts.username)
+    return render(request, "INVIGILATOR/finald.html",{'posts':posts})  
+

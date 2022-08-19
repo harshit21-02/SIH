@@ -6,11 +6,25 @@ from email.policy import default
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import ImageField
-
-
 from django.contrib.auth.models import User 
 
+from django.db import models
+from django.utils import timezone
+import os
+from uuid import uuid4
 
+
+def path_and_rename(instance, filename):
+        upload_to = 'static/STUDENTS PAGE/images/'
+        ext = filename.split('.')[-1]
+        # get filename
+        if instance.username:
+            filename = '{}.{}'.format(instance.username, ext)
+        else:
+            # set filename as random string
+            filename = '{}.{}'.format(uuid4().hex, ext)
+        # return the whole path to the file
+        return os.path.join(upload_to, filename)
 # Create your models here.
 
 class studata(models.Model):
@@ -28,12 +42,18 @@ class studata(models.Model):
     answerid = models.TextField('answerid',default = '')
     marks = models.TextField('marks', max_length = 3, default = '')
     remarks = models.TextField('remarks', default = '')
-    # ismarks = models.BooleanField('ismarks', default = False)
-    image=models.ImageField(upload_to="static/STUDENTS PAGE/images/",null=True,blank=True)
+    image=models.ImageField(upload_to=path_and_rename,null=True,blank=True)
 
 
+    # @property
+    # def image_url(self):
+    #     if self.image:
+    #         return getattr(self.photo, 'url', None)
+    #     return None
+
+    
     
     def __str__(self):
         return self.appno
-    
+
     
