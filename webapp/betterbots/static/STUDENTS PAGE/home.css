@@ -94,7 +94,7 @@ ul {
 .navbar-links {
   display: flex;
   flex-direction: row;
-  width: auto;
+  width: inherit;
   justify-content: space-around;
   position: relative;
   margin-top: 50px;
