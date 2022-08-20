@@ -1,3 +1,4 @@
+from base64 import standard_b64decode
 from dataclasses import dataclass
 from re import X
 import re
@@ -53,7 +54,7 @@ def application(request):
         
         id=uuid.uuid1()
         i=str(id.node)
-        # global x
+        global x
         # x=x+1
         cno="052"
         appno="2022"+cno+i[0:6]
@@ -88,7 +89,6 @@ def application(request):
         
         myuser.save()
 
-        center:str=(str)('to be assigned')
         sdata=studata()
         sdata.appno=appno
         sdata.username = username
@@ -101,12 +101,10 @@ def application(request):
         sdata.state = state
         sdata.answerid=id
         sdata.password = password
-
-
+        sdata.center = 1
+        x+=1
         sdata.nationality = ntly
         
-        sdata.center=center
-
         if len(request.FILES)!=0:
             sdata.image=request.FILES['image']
         sdata.save()
@@ -128,12 +126,17 @@ def result(request):
                 print(msg)
                 messages.info(request,'User is UNAUTHORIZED!')
                 return redirect('/../student/result')
+            posts=studata.objects.get(username=username)
+            # posts.marks = 
+            # print(posts.marks)
+            if(posts.marks == ''):
+                return render(request, "STUDENTS PAGE\iform.html",{'posts':posts, 'var': True}, )
             
              
             try:
                 post=studata.objects.get(username=username)
                 login(request, user)
-                return render(request, "STUDENTS PAGE\iform.html",{'posts':post})
+                return render(request, "STUDENTS PAGE\iform.html",{'posts':post, 'var': False})
             except studata.DoesNotExist:
                 msg = 'Unauthorized'
                 print(msg)
