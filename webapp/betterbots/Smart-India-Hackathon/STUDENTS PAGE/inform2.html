@@ -1,41 +1,8 @@
 {% load static %}
 
 <!DOCTYPE html>
+<html>
 <head>
-  <div class="top_container">
-    <!-- <div class="left_top">
-        <a href="/">
-            <img src="https://drive.google.com/uc?export=download&id=11xsw9jgtCNGijJXphJ_Qn_7b334qXx4q" alt="project_logo" class="logo">
-        </a>
-    </div>  -->
-  
-    <!-- <div class="right_top">
-        <div class="project_desc">
-            <h1><strong>ASCAN</strong></h1>
-        </div> -->
-  
-        <div class="project_com">
-            <h2><strong>Student</strong></h2>
-        </div>
-    </div>
-  
-    <nav class="responsive-nav">
-      <a href=".././"><img src="https://i.postimg.cc/26WxnGqN/basic-logo4.png" class="navbar-logo" alt=""></a>
-      
-      <ul class="navbar-links navbar-collapse">
-        <li class="bar-link"><a href=".././">Home</a></li>
-        <li class="bar-link"><a href=".././student/">Student</a></li>
-        <li class="bar-link"><a href=".././ev aluator/">Invigilator</a></li>
-      </ul>
-      
-      <div class="burger menu-toggle">
-        <div class="line1"></div>
-        <div class="line2"></div>
-        <div class="line3"></div>
-      </div>
-    </nav>
-    <link rel="stylesheet" type="text/css" href={% static '/EVALUVATOR PAGE/scan.css' %}>  
-</head>
    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -111,91 +78,8 @@
         
     <div class="container">
         <h2 class="text-center">RESULTS</h2>
-        <h2>{{var}}</h2>
     <div class="row jumbotron">
-
-
-      <div *ngIf="{{var}}; then norecord else record">
-      </div>
-
-      <ng-template #norecord>
-        <h2>Marks is not upload yet!</h2>
-      <ng-template>
-    
-      <ng-template #record>
-    <table>
-        <thead>
-          <tr>
-            <td colspan="3">Course </td>
-            <td rowspan="2"> Marks obtained </td>
-            <td rowspan="2"> Maximum Marks </td>
-            <!-- <td colspan="2"> Grade </td> -->
-            <td colspan="5" rowspan="2"> Teacher Remarks</td>
-          </tr>
-          <tr>
-            <td>Code </td>
-            <td colspan="2"> Name </td>
-            <!-- <td> Letter </td>
-            <td> Points </td> -->
-            <!-- <td> </td> -->
-
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td> MT-10</td>
-            <td colspan="2"> MATHS</td>
-            <td>{{posts.marks}} </td>
-            <td>100  </td>
-            <td> {{posts.remarks}} </td>
-            <!-- <td>  </td> -->
-          </tr>
-          <!-- <tr>
-            <td></td>
-            <td colspan="2"> </td>
-            <td></td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
-          </tr> -->
-          <!-- <tr>
-            <td> </td>
-            <td colspan="2"> </td>
-            <td> </td>
-            <td>  </td>
-            <td>  </td>
-            <td>  </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td colspan="2"></td>
-            <td> </td>
-            <td>  </td>
-            <td>  </td>
-            <td> </td>
-          </tr> -->
-          <!-- <tr>
-            <td></td>
-            <td colspan="2"> </td>
-            <td> </td>
-            <td></td>
-            <td>  </td>
-            <td>  </td>
-          </tr> -->
-        </tbody>
-        <tfoot>
-          <!-- <tr>
-            <td colspan="4" class="footer">Total</td>
-            <td> </td>
-            <td colspan="2"> </td>
-          </tr>
-          <tr>
-            <td colspan="4" class="footer">GPA</td>
-            <td colspan="3">   </td>
-          </tr> -->
-          
-      </table>
-    </ng-template>
+      Marks is not uploded yet, try after some time
       
     </div>
     <a>

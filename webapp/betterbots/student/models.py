@@ -44,6 +44,7 @@ class studata(models.Model):
     remarks = models.TextField('remarks', default = '')
     image=models.ImageField(upload_to=path_and_rename,null=True,blank=True)
 
+
     # @property
     # def image_url(self):
     #     if self.image:
