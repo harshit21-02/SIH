@@ -65,7 +65,6 @@ def logo(request):
 
 
 def video_reader(request):
-    print("HELLO WORLD")
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     detector = cv2.QRCodeDetector()
     data=""
@@ -96,16 +95,21 @@ def video_reader(request):
     path = os.getcwd() + str("\media\static\STUDENTS PAGE\images")
     print(path)
     for file in os.listdir(path):
+        try:
 
-        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path,file), enforce_detection=False)
-        if recognition['verified'] == True:
-            file = file.replace('.png', '')
-            file = file.replace('.jpg', '')
-            file = file.replace('.jpeg', '')
-            post['imgid']=file
-            print('Verified!!! for the image', file)
-            s = 1
-            return redirect('/../invigilator/details')
+            recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path, file))
+            if recognition['verified'] == True:
+                file = file.replace('.png', '')
+                file = file.replace('.jpg', '')
+                file = file.replace('.jpeg', '')
+                post['imgid']=file
+                print('Verified!!! for the image', file)
+                s = 1
+                return redirect('/../invigilator/details')
+        except:
+            messages.error(request, 'No Face Detected')
+            return redirect('/../invigilator/scan')
+
     if s == 0:
         print("No Data found -_-")
         
