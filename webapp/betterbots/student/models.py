@@ -45,6 +45,7 @@ class studata(models.Model):
     center=models.TextField('center',default='')
     image=models.ImageField(upload_to=path_and_rename,null=True,blank=True)
 
+
     # @property
     # def image_url(self):
     #     if self.image:
