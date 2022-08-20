@@ -14,7 +14,7 @@
             <h1><strong>ASCAN</strong></h1>
         </div> -->
   
-        <div class="project_com">
+        <div class="project_com" style="color: black;">
             <h2><strong>Student</strong></h2>
         </div>
     </div>
@@ -108,20 +108,14 @@
             <input  class="button" type="submit" value="Logout">
           </a> -->
         
+
     <div class="container">
         <h2 class="text-center">RESULTS</h2>
-        <h2>{{var}}</h2>
-    <div class="row jumbotron">
-
-
-      <div *ngIf="{{var}}; then norecord else record">
-      </div>
-
-      <ng-template #norecord>
-        <h2>Marks is not upload yet!</h2>
-      <ng-template>
     
-      <ng-template #record>
+    
+        
+    {% if posts.marks %}
+    <div class="row jumbotron">
     <table>
         <thead>
           <tr>
@@ -194,9 +188,14 @@
           </tr> -->
           
       </table>
-    </ng-template>
-      
+  
     </div>
+    {% else %}
+
+    <h4 style="color: red;"> RECORD NOT FOUND!! </h4>
+
+    {% endif %}
+    <br>
     <a>
         <span></span>
         <span></span>
@@ -204,6 +203,10 @@
         <span></span>
         <input  class="button" type="submit" value="Logout">
       </a>
+      <br>
+      <br>
+      <br>
+      <br>
 </div>
 </form>
 </div>
