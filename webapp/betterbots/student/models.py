@@ -3,6 +3,7 @@ from curses.ascii import NUL
 from distutils.command.upload import upload
 import email
 from email.policy import default
+from tkinter import CENTER
 from unittest.util import _MAX_LENGTH
 from django.db import models
 from django.forms import ImageField
@@ -13,9 +14,8 @@ from django.utils import timezone
 import os
 from uuid import uuid4
 
-
 def path_and_rename(instance, filename):
-        upload_to = 'static/STUDENTS PAGE/images/'
+        upload_to = 'static/'
         ext = filename.split('.')[-1]
         # get filename
         if instance.username:
@@ -24,7 +24,7 @@ def path_and_rename(instance, filename):
             # set filename as random string
             filename = '{}.{}'.format(uuid4().hex, ext)
         # return the whole path to the file
-        return os.path.join(upload_to, filename)
+        return os.path.join(upload_to,'c'+str(instance.center), filename)
 # Create your models here.
 
 class studata(models.Model):
@@ -42,6 +42,7 @@ class studata(models.Model):
     answerid = models.TextField('answerid',default = '')
     marks = models.TextField('marks', max_length = 3, default = '')
     remarks = models.TextField('remarks', default = '')
+    center=models.TextField('center',default='')
     image=models.ImageField(upload_to=path_and_rename,null=True,blank=True)
 
 
