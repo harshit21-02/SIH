@@ -25,6 +25,7 @@ def inhome(request):
     if request.method=="POST":
         username: str =  request.POST['Center_ID']
         password =  request.POST['password']
+        centercode =  request.POST['centercode']
         password=str(password) 
         # print(username)
         # print(password)
@@ -32,12 +33,14 @@ def inhome(request):
         user =None
         user = authenticate(username=username, password=password)
         if user is not None:
-            if user.is_invigilator==False:
+            if user.is_invigilator==False or user.center!=centercode:
                 msg = 'Unauthorized'
                 print(msg)
                 messages.info(request,'User is UNAUTHORIZED!')
                 print("UNAUTHORIZED")
-                return redirect('/../invigilator/') 
+                return redirect('/../invigilator/')
+            global post 
+            post['cid']=user.center
             login(request, user)
             return redirect('/../invigilator/scan')
         else:
@@ -74,6 +77,7 @@ def video_reader(request):
         data, bbox, _ = detector.detectAndDecode(img)
         if data:
             print("QR Code detected-->", data)
+            global post 
             post['aid']=data
             break
         if cv2.waitKey(1) == ord("q"):
@@ -92,9 +96,14 @@ def video_reader(request):
     cam.release()
     cv2.destroyAllWindows()
     s = 0
-    path = os.getcwd() + str("\media\static\STUDENTS PAGE\images")
-    print(path)
+    path = os.getcwd() + str("\media\static")
+    print(post)
+    # global post
+    # print(post) 
+    path = os.path.join(path, post['cid'])
+    # print(os.path.join(path,file))
     for file in os.listdir(path):
+<<<<<<< HEAD
         try:
 
             recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path, file))
@@ -110,6 +119,18 @@ def video_reader(request):
             messages.error(request, 'No Face Detected')
             return redirect('/../invigilator/scan')
 
+=======
+        recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path,file), enforce_detection=False)
+        print(os.path.join(path,file))
+        if recognition['verified'] == True:
+            file = file.replace('.png', '')
+            file = file.replace('.jpg', '')
+            file = file.replace('.jpeg', '')
+            post['imgid']=file
+            print('Verified!!! for the image', file)
+            s = 1
+            return redirect('/../invigilator/details')
+>>>>>>> 231f2fee7a129090cd9c0427f306df52ef51698d
     if s == 0:
         print("No Data found -_-")
         
@@ -119,7 +140,9 @@ def video_reader(request):
     return redirect('/../invigilator/scan')
     
 def details(request):
+    global post 
     posts=studata.objects.get(username=post['imgid'])
+ 
     posts.answerid=post['aid']
     posts.save()
     print(posts.username)

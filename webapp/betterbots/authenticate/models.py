@@ -12,7 +12,7 @@ class User(AbstractUser):
     contact=models.TextField('contact',  default='')
     gender = models.TextField('gender', default = '')
     cpassword=models.TextField('fpass', default='')
-    # city=models.TextField('city', default = '')
+    center=models.TextField('center', default = '')
     # state=models.TextField('state', default='')
     # nationality = models.TextField('ntly', default = '')
     is_student=models.BooleanField('is_student',default=False)
