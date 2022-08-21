@@ -110,19 +110,15 @@
         
     <div class="container">
         <h2 class="text-center">RESULTS</h2>
-        <h2>{{var}}</h2>
     <div class="row jumbotron">
 
 
 
-      <div *ngIf="{{var}}; then norecord else record">
-      </div>
-
-      <ng-template #norecord>
-        <h2>Marks is not upload yet!</h2>
-      <ng-template>
     
-      <ng-template #record>
+
+     
+    
+    {% if posts.marks %}
     <table>
         <thead>
           <tr>
@@ -195,7 +191,10 @@
           </tr> -->
           
       </table>
-    </ng-template>
+    {% else %}
+    <h4 style ="color:rgb(1, 1, 1)">Record not found!</h4>
+    {% endif %}
+    
       
     </div>
     <a>
