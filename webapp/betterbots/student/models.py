@@ -44,6 +44,7 @@ class studata(models.Model):
     remarks = models.TextField('remarks', default = '')
     center=models.TextField('center',default='')
     image=models.ImageField(upload_to=path_and_rename,null=True,blank=True)
+    astatus=models.BooleanField('astatus',default=False)
 
 
     # @property

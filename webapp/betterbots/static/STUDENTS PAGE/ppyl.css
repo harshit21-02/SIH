@@ -1,4 +1,5 @@
- /* .container {
+ /* 
+ .container {
   max-width: 1100px;
   padding: 20px;
   margin: 110px auto;
@@ -73,7 +74,6 @@ body {
   font-family: system-ui;
   background: linear-gradient(#141e30, #243b55);
   color: white;
-  text-align: center;
 }
 
 a {
@@ -227,8 +227,8 @@ ul {
 body {
   min-height: 100vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  /* align-items: center; */
+  /* justify-content: center; */
   background: linear-gradient(#141e30, #243b55);
 }
 
@@ -238,7 +238,7 @@ body {
   width: 100%;
   border-radius: 6px;
   padding: 300px;
-  margin: 100px 15px;
+  margin: 100px auto;
   background-color: #fff;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }

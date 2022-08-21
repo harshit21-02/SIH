@@ -139,7 +139,7 @@ def video_reader(request):
 def details(request):
     global post 
     posts=studata.objects.get(username=post['imgid'])
- 
+    posts.astatus=True
     posts.answerid=post['aid']
     posts.save()
     print(posts.username)
