@@ -46,7 +46,6 @@ body {
   font-family: system-ui;
   background: linear-gradient(#141e30, #243b55);
   color: white;
-  text-align: center;
 }
 
 a {
@@ -208,7 +207,7 @@ td {
   
   thead{
     font-weight:bold;
-    text-align:center;
+    /* text-align:center; */
     background: rgb(255, 255, 255);
     color:rgb(0, 0, 0);
 
