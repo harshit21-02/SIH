@@ -2,6 +2,11 @@ from base64 import standard_b64decode
 from dataclasses import dataclass
 from re import X
 import re
+import os
+import cv2
+from deepface import DeepFace
+from django.core.files.storage import default_storage
+
 from xml.dom import ValidationErr
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
@@ -52,6 +57,7 @@ def application(request):
             messages.error(request, ' Sorry! Email is already registered')
             return redirect('/student/application')
         
+
         id=uuid.uuid1()
         i=str(id.node)
         global x
@@ -101,15 +107,61 @@ def application(request):
         sdata.state = state
         sdata.answerid=id
         sdata.password = password
-        sdata.center = 1
+        sdata.center = x
         x+=1
         sdata.nationality = ntly
         
+        s=0
         if len(request.FILES)!=0:
-            sdata.image=request.FILES['image']
-        sdata.save()
-        return redirect('/../student/result')
+           
+            
+           #  Saving POST'ed file to storage
+            file = request.FILES['image']
+            file_name = default_storage.save(file.name, file)
+            
+            #  Reading file from storage
+            file = default_storage.open(file_name)
+            file_url = str(os.getcwd()+str(default_storage.url(file_name)))
+            print(file_url)
+            # print(file_url)
+            # cv2.imwrite('image2.jpg', imgg)
+            # cc='c'+str(x)
+            # path1=os.getcwd() 
+            # path1 = str(path1)+"/"+cc+ "/" + str(imgg)
+            
+            cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
+            
+            while True:
+                _, img = cam.read()
+                cv2.imshow("img", img)
+                if cv2.waitKey(1) == ord("s"):
+                    cv2.imwrite('image1.jpg', img)
+                    break
+            cam.release()
+            cv2.destroyAllWindows()
+            # # print(path1)
+            # try:
+            recognition = DeepFace.verify(img1_path="image1.jpg", img2_path=file_url)
+            # print(imgg)
+            if recognition['verified'] == True:
+                sdata.image=file
+                sdata.save()
+                messages.success(request, 'Face verified!! SUCCESSFULLY REGISTERED')
+                return redirect('/../student/result')
+            else:
+                messages.error(request, 'Face is not matching!! Please try again!')
+                return redirect('/../student/application')
+            # except:
+            #     print("except")
+            #     messages.error(request, 'No face detected!! Please try again!')
+            #     return redirect('/../student/application')
+
+        else:
+            messages.error(request, 'Upload valid image file')
+            return render(request, "STUDENTS PAGE\pply.html")
+    
     return render(request, "STUDENTS PAGE\pply.html")
+
 
 def result(request):
     msg = None

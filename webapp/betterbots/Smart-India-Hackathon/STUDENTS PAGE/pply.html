@@ -56,6 +56,17 @@
     </span>
 
     <header><h2><center>Registration Form</center></h2></header>
+
+    <div>
+      {% if messages %}
+        <br>
+        {% for message in messages %}
+        <div style="font: x-large; padding: 20px; color: red;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+        <br>
+      {% endif %}
+    </div>
+
     <form action="#" method="post" enctype="multipart/form-data">
       {% csrf_token %}
       <div class="fields">
@@ -167,15 +178,7 @@
 
       </div>
 
-      <div>
-        {% if messages %}
-          <br>
-          {% for message in messages %}
-          <div style="padding: 10px;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-          {% endfor %}
-          <br>
-        {% endif %}
-      </div>
+      
 
     </div>
         </div>

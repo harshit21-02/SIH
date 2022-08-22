@@ -17,7 +17,7 @@
             </div> -->
       
             <div class="project_com">
-                <h2><strong>Invigilator</strong></h2>
+                <center><h2><strong>Invigilator</strong></h2></center>
             </div>
         </div>
       
@@ -85,7 +85,7 @@
                 <div class="form-control" name="State" id="State">{{posts.state}}</div>
             </div>
            
-            <div class="col-sm-6 form-group">
+            <div class="col-sm-2 form-group">
                 <label for="country">Country</label>
                 <div class="form-control" name="country" id="country">{{posts.nationality}}</div>
             </div>
@@ -100,6 +100,15 @@
             <div class="col-sm-6 form-group">
                 <label for="tel">Phone No.</label>
                 <div name="phone" class="form-control" id="tel">{{posts.contact}}</div>
+            </div>
+            <div class="col-sm-6 form-group">
+                <label for="Status">Status</label>
+                <div name="phone" class="form-control" id="tel">{% if posts.astatus %}
+                                                                  Present
+                                                                {% else %}
+                                                                  Absent
+                                                                {% endif %}
+                </div>
             </div>
         </div>
         <!-- <a>

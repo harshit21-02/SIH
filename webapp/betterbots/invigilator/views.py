@@ -19,6 +19,8 @@ value = settings.BASE_DIR
 # Create your views here.
 
 post={}
+path=""
+
 
 def inhome(request):
     msg = "fghj"
@@ -41,6 +43,12 @@ def inhome(request):
                 return redirect('/../invigilator/')
             global post 
             post['cid']=user.center
+            global path
+            path = os.getcwd() + str("\media\static")
+            print(post)
+            # global post
+            # print(post) 
+            path = os.path.join(path, post['cid'])
             login(request, user)
             return redirect('/../invigilator/scan')
         else:
@@ -85,6 +93,10 @@ def video_reader(request):
     cam.release()
     cv2.destroyAllWindows()
 
+    if data=='':
+        messages.error(request,'No code detected!! Please try again!')
+        return redirect('/../invigilator/scan')
+
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
 
     while True:
@@ -96,15 +108,10 @@ def video_reader(request):
     cam.release()
     cv2.destroyAllWindows()
     s = 0
-    path = os.getcwd() + str("\media\static")
-    print(post)
-    # global post
-    # print(post) 
-    path = os.path.join(path, post['cid'])
+    global path
     # print(os.path.join(path,file))
     for file in os.listdir(path):
         try:
-
             recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path, file))
             if recognition['verified'] == True:
                 file = file.replace('.png', '')
@@ -130,11 +137,13 @@ def video_reader(request):
             return redirect('/../invigilator/details')
     if s == 0:
         print("No Data found -_-")
+        messages.error(request,'No match found!! Please try again!')
+        return redirect('/../invigilator/scan')
         
-    if data!="":
-        return HttpResponse(data)
+    # if data!="":
+    #     return HttpResponse(data)
 
-    return redirect('/../invigilator/scan')
+    
     
 def details(request):
     global post 

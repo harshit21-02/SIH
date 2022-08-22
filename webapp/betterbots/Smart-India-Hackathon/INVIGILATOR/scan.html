@@ -41,6 +41,15 @@
   <link rel="stylesheet" href="../../static/INVIGILATOR PAGE/scan.css">
 </head>
 <body style="overscroll-behavior: none;">
+
+  {% if messages %}
+  
+    {% for message in messages %}
+    <div style="padding: 10px; background: white; color: black;" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+    {% endfor %}
+ 
+  {% endif %}
+
     <div class="login-box">
         <h2>Scan QR Code</h2>
         <form action="video_reader" method="POST"> 
