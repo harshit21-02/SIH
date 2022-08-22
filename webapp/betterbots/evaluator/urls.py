@@ -29,5 +29,8 @@ urlpatterns = [
     path('scanqr',views.scanqr, name="scanqr"),
     path('marks', views.marks,name="marks"),
     path('upload', views.upload,name="upload"),
+    path('attend', views.attend,name="attend"),
+     path('back', views.back,name="back"),
+
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

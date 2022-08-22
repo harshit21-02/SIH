@@ -12,6 +12,7 @@ from django.contrib.auth import get_user_model
 from django.contrib import messages
 from student.models import studata
 from django import forms
+from math import ceil
 from django.contrib.auth.decorators import login_required
 from student.models import studata
 import qrcode 
@@ -46,6 +47,15 @@ def evlogin(request):
             return redirect('/../evaluator/') 
     return render(request, "EVALUATOR PAGE\login.html")
 
+def attend(request):
+    att = studata.objects.all()
+
+    print(att)
+    # n = len(att)
+    # slides = n//4 + ceil((n/4) - (n//4))
+    params = {'atten': att}
+    return render(request, '''EVALUATOR PAGE\sttend.html''', params)
+
 def scanqr(request):
     if request.user.is_authenticated:
         # print(request.user.image)
@@ -65,6 +75,7 @@ def logev(request):
 
 def marks(request):
     print("HELLO WORLD")
+    # is function ka kaam --> Qr aur face scan krke, student ke database se link krna qr code ko
     cam = cv2.VideoCapture(0,cv2.CAP_DSHOW)
     detector = cv2.QRCodeDetector()
     data=""
@@ -113,3 +124,6 @@ def upload(request):
     print(msg)
     messages.info(request,'Upload marks')
     return render(request, "EVALUATOR PAGE\input.html")
+
+def back(request):
+    return render(request, "EVALUATOR PAGE\scan.html")
