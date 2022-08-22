@@ -6,15 +6,13 @@ import qrcode
 import PIL.Image
 # from qrgenerator.models import qrc
 import cv2
-
+import uuid
 no=6
-data=None
 def qr(request):
-    global data
     global no
     if request.method=="POST":
         no=no+1
-        data=request.POST['data']
+        data=str(uuid.uuid4())
         img=qrcode.make(data)
         name: str = "test"+ str(no) +".png"
         img.save("static/qrcode/test.png")

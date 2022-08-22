@@ -58,12 +58,7 @@ def application(request):
             return redirect('/student/application')
         
 
-        id=uuid.uuid1()
-        i=str(id.node)
-        global x
-        # x=x+1
-        cno="052"
-        appno="2022"+cno+i[0:6]
+        appno="2022"+str(uuid.uuid4().node)[5:12]
         
         msg=None
         password=str(password)
