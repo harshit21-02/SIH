@@ -10,6 +10,7 @@ import uuid
 no=6
 def qr(request):
     global no
+    data=""
     if request.method=="POST":
         no=no+1
         data=str(uuid.uuid4())

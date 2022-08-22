@@ -30,7 +30,7 @@ def studenthome(request):
     return render(request, "STUDENTS PAGE\home.html")
 
 def application(request):
-    
+    global x
     if request.method=="POST":
         username =  request.POST['username']
         fname:str = request.POST['fname']
@@ -104,6 +104,7 @@ def application(request):
         sdata.password = password
         sdata.center = x
         x+=1
+        x%=2
         sdata.nationality = ntly
         
         s=0
