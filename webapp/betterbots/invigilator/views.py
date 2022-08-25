@@ -114,6 +114,7 @@ def video_reader(request):
         try:
             recognition = DeepFace.verify(img1_path="image.jpg", img2_path=os.path.join(path, file))
             if recognition['verified'] == True:
+                # post['image1']=img
                 file = file.replace('.png', '')
                 file = file.replace('.jpg', '')
                 file = file.replace('.jpeg', '')

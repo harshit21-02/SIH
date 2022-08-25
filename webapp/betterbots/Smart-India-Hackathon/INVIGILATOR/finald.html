@@ -55,57 +55,31 @@
         <form action="scan">
             <h2 class="text-center">Student Final Details</h2>
         <div class="row jumbotron">
+            <div class="col-sm-5 form-group">
+                
+            </div>
             <tr>
                 <label for="email"><pre>  </pre></label>
-                <td><img src="{{posts.image.url}}" style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;"></td>
+                <td><img src="{{posts.image.url}}" style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;" class="photu"></td>
                 </tr>
-            <div class="col-sm-6 form-group">
-                <label for="name-f">Full Name</label>
-                <div class="form-control" name="fname" id="name-f">{{posts.fullname}}</div>
-            </div>
-            
-            <div class="col-sm-6 form-group">
-                <label for="email">E-mail</label>
-                <div class="form-control" name="email" id="email">{{posts.email}}</div>
-            </div>
-            
-            <div class="col-sm-6 form-group">
-                <label for="Application">Username</label>
-                <div class="form-control" name="Application" id="Application">{{posts.username}}</div>
-            </div>
 
+            <!-- <tr>
+                <label for="email"><pre>  </pre></label>
+                <td><img src="{{image1.url}}" style="width:150px;height:150px;border:0px 300px solid #000;background-color:aliceblue;"></td>
+                </tr> -->
+                <div class="col-sm-4 form-group"></div>
+                <div class="col-sm-4 form-group"></div>
+                <div class="col-sm-6 form-group" style="color: green; font-weight: 500 ; padding-left: 85px;">VERIFIED SUCCESSFULLY !!</div>
+                <!-- <div class="col-sm-4 form-group"></div> -->
+                <div class="col-sm-3 form-group"></div>
             <div class="col-sm-6 form-group">
-                <label for="center">Answer-Copy UID</label>
+                <label for="center" class="copy">Answer-Copy UID</label>
                 <div class="form-control" name="center" id="email">{{posts.answerid}}</div>
             </div>
-
-            <div class="col-sm-2 form-group">
-                <label for="City">City</label>
-                <div class="form-control" name="City" id="City" >{{posts.city}}</div>
-            </div>
-            <div class="col-sm-2 form-group">
-                <label for="State">State</label>
-                <div class="form-control" name="State" id="State">{{posts.state}}</div>
-            </div>
-           
-            <div class="col-sm-2 form-group">
-                <label for="country">Country</label>
-                <div class="form-control" name="country" id="country">{{posts.nationality}}</div>
-            </div>
+            <div class="col-sm-3  form-group"></div>
+            <div class="col-sm-3 form-group"></div>   
             <div class="col-sm-6 form-group">
-                <label for="Date of Birth">Date of Birth</label>
-                <div class="form-control" name="Date" id="dob">{{posts.dob}}</div>
-            </div>
-            <div class="col-sm-6 form-group">
-                <label for="Gender">Gender</label>
-                <div class="form-control" name="Gender" id="gender" >{{posts.gender}}</div>
-            </div>
-            <div class="col-sm-6 form-group">
-                <label for="tel">Phone No.</label>
-                <div name="phone" class="form-control" id="tel">{{posts.contact}}</div>
-            </div>
-            <div class="col-sm-6 form-group">
-                <label for="Status">Status</label>
+                <label for="Status" class="status">Status</label>
                 <div name="phone" class="form-control" id="tel">{% if posts.astatus %}
                                                                   Present
                                                                 {% else %}

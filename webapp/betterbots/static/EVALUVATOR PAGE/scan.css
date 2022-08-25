@@ -341,6 +341,10 @@ html {
       right: 100%;
     }
   }
+
+  .label.copy{
+    padding-left: 15px;
+  }
   
   .login-box a span:nth-child(4) {
     bottom: -100%;
