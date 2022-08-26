@@ -25,4 +25,5 @@ urlpatterns = [
     path('invigilator/',include('invigilator.urls', namespace='inhome')),
     path('evaluator/',include('evaluator.urls', namespace='evhome')),
     path('qrgenerator/',include('qrgenerator.urls', namespace='qrgenerator')),
+    path('allocate/',include('allocate.urls', namespace='allocate')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,25 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from turtle import settiltangle
+from xml.dom.minidom import Document
+from django.conf import settings
+from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls.static import static
-from django.conf import settings
-from django.contrib.auth import views as auth_view
+
 from . import views
 
-app_name="evhome"
+app_name="allocate"
 urlpatterns = [
-    
-    path('admin/', admin.site.urls),
-    path('', views.evlogin, name="evlogin"),
-    path('verify', views.verify),
-    path('logev', views.logev, name="logev"),
-    path('scanqr',views.scanqr, name="scanqr"),
-    path('marks', views.marks,name="marks"),
-    path('upload', views.upload,name="upload"),
-    path('attend', views.attend,name="attend"),
-     path('back', views.back,name="back"),
-
-
-]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', views.ahome, name="ahome"),
+    path('allocate', views.allocate, name="allocate"),
+] +static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -13,6 +13,8 @@ import cv2
 from deepface import DeepFace
 import os
 from student.models import studata
+from .utils import *
+from authenticate import models
 
 from django.conf import settings
 value = settings.BASE_DIR
@@ -20,8 +22,8 @@ value = settings.BASE_DIR
 
 post={}
 path=""
-
-
+token: str
+user=None
 def inhome(request):
     msg = "fghj"
     if request.method=="POST":
@@ -32,7 +34,7 @@ def inhome(request):
         # print(username)
         # print(password)
         
-        user =None
+        global user
         user = authenticate(username=username, password=password)
         if user is not None:
             if user.is_invigilator==False or user.center!=centercode:
@@ -41,6 +43,12 @@ def inhome(request):
                 messages.info(request,'User is UNAUTHORIZED!')
                 print("UNAUTHORIZED")
                 return redirect('/../invigilator/')
+            
+          
+            global token
+            token=user.email_token
+            send_email_token(user.email,user.email_token)
+
             global post 
             post['cid']=user.center
             global path
@@ -49,14 +57,40 @@ def inhome(request):
             # global post
             # print(post) 
             path = os.path.join(path, post['cid'])
-            login(request, user)
-            return redirect('/../invigilator/scan')
+            messages.info(request,'Waiting for email verification')
+            return redirect('/../invigilator/')  
+            # login(request, user)
+            # return redirect('/../invigilator/scan')
         else:
             msg = 'invlaid credentials'
             print(msg)
             messages.info(request,'User is not registered!')
             return redirect('/../invigilator/')  
     return render(request, "INVIGILATOR\index.html")
+
+
+
+
+def verify(request):
+    try:
+        # print(token)
+        # obj=token
+        global user
+        obj=user.email_token
+        global token
+        if obj==token:
+            login(request, user)
+            messages.info(request,'Email is verified')
+            return redirect('/../invigilator/scan')
+    except:
+        msg = 'Email is need to be verified'
+        print(msg)
+        messages.info(request,'Email is need to be verified')
+        return redirect('/../invigilator/')
+
+
+
+
 
 def scan(request):
     if request.user.is_authenticated:

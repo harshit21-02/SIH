@@ -18,8 +18,12 @@ from student.models import studata
 import qrcode 
 import PIL.Image
 import cv2
+from .utils import *
+
 
 dataid={}
+token: str
+user=None
 
 def evlogin(request):
     if request.method=="POST":
@@ -29,7 +33,7 @@ def evlogin(request):
         print(username)
         print(password)
         
-        user =None
+        global user
         user = authenticate(username=username, password=password)
         if user is not None:
             print("yes")
@@ -38,14 +42,42 @@ def evlogin(request):
                 print(msg)
                 messages.info(request,'UNAUTHORIZED')
                 return redirect('/../evaluator/')
-            login(request, user)
-            return redirect('/../evaluator/scanqr')
+            
+            global token
+            token=user.email_token
+            send_email_token(user.email,user.email_token)
+            messages.info(request,'Waiting for email verification')
+            return redirect('/../evaluator/')  
         else:
             msg = 'User is not REGISTERED'
             print(msg)
             messages.info(request,'User is not REGISTERED ')
             return redirect('/../evaluator/') 
     return render(request, "EVALUATOR PAGE\login.html")
+
+
+def verify(request):
+    try:
+        # print(token)
+        # obj=token
+        global user
+        obj=user.email_token
+        global token
+        if obj==token:
+            login(request, user)
+            messages.info(request,'Email is verified')
+            return redirect('/../evaluator/scanqr')
+    except:
+        msg = 'Email is need to be verified'
+        print(msg)
+        messages.info(request,'Email is need to be verified')
+        return redirect('/../evaluator/')
+
+
+
+
+
+
 
 def attend(request):
     att = studata.objects.all()

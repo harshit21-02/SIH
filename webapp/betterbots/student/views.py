@@ -77,7 +77,7 @@ def application(request):
         myuser.email=mail
         myuser.contact=contact
         myuser.gender=gender
-       
+        
         myuser.cpassword = password
         myuser.is_student=True
       
@@ -86,9 +86,8 @@ def application(request):
         # if len(request.FILES)!=0:
         #     myuser.image=request.FILES['image']
         
-            
+        myuser.email_token = str(uuid.uuid4())
         
-        myuser.save()
 
         sdata=studata()
         sdata.appno=appno
@@ -142,6 +141,7 @@ def application(request):
             if recognition['verified'] == True:
                 sdata.image=file
                 sdata.save()
+                myuser.save()
                 messages.success(request, 'Face verified!! SUCCESSFULLY REGISTERED')
                 return redirect('/../student/result')
             else:

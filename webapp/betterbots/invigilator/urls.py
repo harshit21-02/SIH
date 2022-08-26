@@ -20,8 +20,9 @@ from . import views
 app_name="inhome"
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', views.inhome, name="inhome"),
+    path('verify', views.verify),
     path('scan', views.scan, name="scan"),
     path('logo', views.logo, name="logo"),
     path('video_reader', views.video_reader,name="video_reader"),
