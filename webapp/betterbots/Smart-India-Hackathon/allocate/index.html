@@ -1,20 +1,58 @@
+
+
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-<title>title</title>
+<style> 
+
+body{
+    background-image: url('../../static/STUDENTS PAGE/image.jpg');
+}
+.centre{
+    text-align: center;
+    margin-top: 189px;
+    font-size: 24px;
+}
+.user{
+    padding-top: 30px; 
+}
+.user form {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 300px;
+    color: #03e9f4;
+    font-size: 9px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 13px;
+    margin-left: 725px;
+    letter-spacing: 4px;
+}
+input[type=submit] {
+  background-color: #04AA6D;
+  border: none;
+  color: white;
+  padding: 26px 51px;
+  text-decoration: none;
+  margin: 4px 2px;
+  cursor: pointer;
+  position: center;
+}
+</style>
 </head>
 <body>
-    <div>
-      <h2> CHECK CENTER ALLOCATION</h2>
-    </div>
-    <div>
-       
-    </div>
-    <form action="allocate" method="post">
-        {% csrf_token %}
-        <input type="submit"  value="ALLOCATE">
-    </form>
 
-</body></html>
+<div class="user">
+    <div class="centre">
+        <h2>CHECK CENTER ALLOCATION</h2>
+    </div>
+<form action="allocate" method="post">
+    {% csrf_token %}
+    <input type="submit"  value="ALLOCATE">
+</form>
+</div>
+</body>
+</html>
